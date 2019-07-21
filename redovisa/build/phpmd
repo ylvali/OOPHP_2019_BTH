@@ -1,0 +1,8 @@
+C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\redovisa\src\Controller\SampleController.php:30	Avoid unused private fields such as '$db'.
+C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\redovisa\src\Game\Guess.php:26	Avoid unused private fields such as '$moreGuesses'.
+C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\redovisa\src\Game\Guess.php:27	Avoid unused private fields such as '$randomNr'.
+C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\redovisa\src\Game\Guess.php:28	Avoid unused private fields such as '$theGuess'.
+C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\redovisa\src\Game\Guess.php:29	Avoid unused private fields such as '$rounds'.
+C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\redovisa\src\Game\Guess.php:30	Avoid unused private fields such as '$winner'.
+C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\redovisa\src\Game\Guess.php:31	Avoid unused private fields such as '$message'.
+C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\redovisa\src\Page\Page.php:20	Avoid unused private fields such as '$layout'.
