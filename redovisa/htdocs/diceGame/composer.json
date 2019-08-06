@@ -1,0 +1,14 @@
+{
+    "name": "ylva/dice-game",
+    "description": "To get started with a dice game",
+    "license": "MIT",
+    "authors": [
+            {
+                "name": "Mikael Roos & Ylva",
+                "email": "mos@dbwebb.se"
+            }
+    ],
+    "autoload": {
+        "psr-4": {"Ylva\\": "src/"}
+    }
+}
