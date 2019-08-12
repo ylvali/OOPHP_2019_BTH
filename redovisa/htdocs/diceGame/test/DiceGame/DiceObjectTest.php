@@ -19,12 +19,28 @@ class DiceObjectTest extends TestCase
      */
     public function testCreateObject()
     {
-        $a_dice = new Dice();
-        $this->assertInstanceOf("\Ylva\DiceGame\Dice", $a_dice);
+        $aDice = new Dice();
+        $this->assertInstanceOf("\Ylva\DiceGame\Dice", $aDice);
 
-        $a_dice->set_dice_nr(3);
-        $res = $a_dice->get_dice_nr();
+        $aDice->setDiceNr(3);
+        $res = $aDice->getDiceNr();
         $exp = 3;
         $this->assertEquals($exp, $res);
+    }
+
+
+    /**
+    *
+    * Test throwing the dice
+    *
+    */
+    public function testThrowDice()
+    {
+        $aDice2 = new Dice();
+        $this->assertInstanceOf("\Ylva\DiceGame\Dice", $aDice2);
+
+        $aDice2->throwDice();
+        $res = $aDice2->getDiceNr();
+        $this->assertLessThan(7, $res);
     }
 }

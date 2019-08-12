@@ -1,7 +1,6 @@
 <?php
 namespace Ylva\DiceGame;
 
-
 /*
 *  Class : Dice
 *
@@ -32,11 +31,11 @@ class Dice
      * @param int $number The current dice face
      *            None given will generate a random nr
      */
-    public function __construct(int $number = Null)
+    public function __construct(int $number = null)
     {
         $this->number = $number;
 
-        if ($number === Null) {
+        if ($number === null) {
             $this->random();
         }
     }
@@ -58,7 +57,7 @@ class Dice
      *
      * @return int as the nr on the dice
      */
-    public function get_dice_nr()
+    public function getDiceNr()
     {
         return $this->number;
     }
@@ -70,13 +69,24 @@ class Dice
      * @return void
      * @throws DiceException when set nr is out of range
      */
-    public function set_dice_nr($a_nr)
+    public function setDiceNr($aNr)
     {
-      $this->number = $a_nr;
+        $this->number = $aNr;
 
-      if ($a_nr < 1 || $a_nr > 6) {
-          throw new DiceException("Nr between 1 - 6 only");
-      }
+        if ($aNr < 1 || $aNr > 6) {
+            throw new DiceException("Nr between 1 - 6 only");
+        }
     }
 
+
+   /**
+   * Throw the dice
+   *
+   * @return int as the nr on the dice
+   */
+    public function throwDice()
+    {
+        $this->random();
+        return $this->number;
+    }
 }

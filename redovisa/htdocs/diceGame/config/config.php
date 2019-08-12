@@ -25,3 +25,11 @@ set_exception_handler(function ($e) {
         . $e->getTraceAsString()
         . "</pre>";
 });
+
+
+/**
+*   Start session
+*
+*/
+session_name("ylsj11");
+session_start();

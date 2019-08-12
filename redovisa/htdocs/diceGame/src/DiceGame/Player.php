@@ -1,6 +1,6 @@
 <?php
-namespace Ylva\DiceGame;
 
+namespace Ylva\DiceGame;
 
 /*
 *  Class : Player
@@ -21,14 +21,14 @@ class Player
      * @var string $name      The name of the player
      * @var int $score        The current score of the player
      * @var boolean $person   If it is a person or a computer
-     * @var object Player $next_player  The next player in line
+     * @var object Player $nextPlayer  The next player in line
      *
      */
 
-      public $name;
-      private $score;
-      private $person;
-      private $next_player;
+    public $name;
+    private $score;
+    private $human;
+    private $nextPlayer;
 
 
     /**
@@ -38,11 +38,11 @@ class Player
      * @param int $number The current dice face
      *            None given will generate a random nr
      */
-    public function __construct($name = Null, $person = False, $next_player = Null )
+    public function __construct($name = null, $human = false, $nextPlayer = null)
     {
         $this->name = $name;
-        $this->person = $person;
-        $this->next_player = $next_player;
+        $this->human = $human;
+        $this->nextPlayer = $nextPlayer;
     }
 
 
@@ -51,9 +51,20 @@ class Player
      *
      * @return void
      */
-    public function set_name($the_name)
+    public function setName($theName)
     {
-        $this->name = $the_name;
+        $this->name = $theName;
+    }
+
+
+    /**
+     * Set the name
+     *
+     * @return string $name   Returns the name
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
 
@@ -62,7 +73,7 @@ class Player
      *
      * @return void
      */
-    public function add_score($points)
+    public function addScore($points)
     {
         $this->score += $points;
     }
@@ -74,20 +85,21 @@ class Player
        *
        * @return int the score
        */
-      public function get_score()
-      {
+    public function getScore()
+    {
           return $this->score;
-      }
+    }
 
 
     /**
      * Add next player
      *
+     * @param Player object
      * @return void
      */
-    public function add_next_player($a_player)
+    public function addNextPlayer($aPlayer)
     {
-        $this->next_player = $a_player;
+        $this->nextPlayer = $aPlayer;
     }
 
 
@@ -96,8 +108,31 @@ class Player
      *
      * @return object the next player
      */
-    public function get_next_player()
+    public function getNextPlayer()
     {
-        return $this->next_player;
+        return $this->nextPlayer;
+    }
+
+
+    /**
+     * Set if player is a computer / person
+     *
+     * @param boolean is player a human? (and not computer)
+     * @return void
+     */
+    public function setIsHuman($isHuman)
+    {
+        $this->human = $isHuman;
+    }
+
+
+    /**
+     * Get if player is a computer / person
+     *
+     * @return boolean returns if player is a human (False/True)
+     */
+    public function isHuman()
+    {
+        return $this->human;
     }
 }

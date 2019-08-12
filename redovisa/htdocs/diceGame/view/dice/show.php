@@ -2,7 +2,8 @@
 <meta charset="utf-8">
 <title><?= $title ?></title>
 <h1><?= $title ?></h1>
+<p> <?= $thePlayersRes ?> </p>
 
-<p> The dice has nr: <?= $a_dice->get_dice_nr() ?> </p>
-
-<p> Out of bound : <?= $a_dice->set_dice_nr(8)?> </p>
+<p> Session: <?= $res1 ?> </p>
+<p> Result: <?= $res ?> </p>
+<p><?= $restartForm ?> </p>
