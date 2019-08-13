@@ -20,7 +20,7 @@ class Player
      *
      * @var string $name      The name of the player
      * @var int $score        The current score of the player
-     * @var boolean $person   If it is a person or a computer
+     * @var boolean $human   If it is a person or a computer
      * @var object Player $nextPlayer  The next player in line
      *
      */

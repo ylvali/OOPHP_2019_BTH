@@ -24,7 +24,8 @@ class GameRound
      * @var int $score                      The calculated score
      * @var int $diceArr                    Array of the dicehand w ints
      * @var boolean $resRegistered          Boolean, is result registered?
-     * @var int $theNrOfDice                   The nr of dice chosen
+     * @var int $theNrOfDice                The nr of dice chosen
+     * @var int $roundId                    Id for the round
      *
      */
 

@@ -24,7 +24,7 @@ class TheGame
    * @var object $winner            The winning player (Player object)
    * @var object $currentPlayer     The current player (Player object)
    * @var object $currentGameRound  The current game round (Game round object)
-   * @var object $playAgain         Play the same round again
+   * @var boolean $playAgain         Play the same round again
    *
    */
 
