@@ -60,8 +60,7 @@ namespace Anax\Game;
          // Save in session
          $_SESSION["theGame"] = serialize($guessGame);
     }
-
-
+    
      // Place the object in an accesible variable
      $guessGame = unserialize($_SESSION["theGame"]);
 

@@ -22,7 +22,8 @@ return [
                 // Change here to set another default stylesheet
                 "css/dbwebb-se.min.css",
                 "css/extra.css",
-                "css/theGame.css"
+                "css/theGame.css",
+                "css/theDiceGame.css"
                 //"css/another.min.css",
             ],
             "javascripts" => [
