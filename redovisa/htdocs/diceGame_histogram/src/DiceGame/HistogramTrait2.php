@@ -44,7 +44,7 @@ trait HistogramTrait2
      * @return int with the max value.
      */
     public function getHistogramMax()
-    {
+    {   
         return max($this->serie);
     }
 }

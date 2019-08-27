@@ -50,28 +50,12 @@ class Histogram
         $assoArr[$strNr] .= "*";
       }
 
-      # Catch arguments if any
-      if($this->min){
-        $start = $this->min;
-        $printAll = True;
-      } else {
-        $start = 1;
-      }
+      # Print all
+      $start = $this->min;
+      $stop = $this->max + 1;
 
-      if($this->max){
-        $stop = $this->max + 1;
-        $printAll = True;
-      } else {
-        $stop = 7;
-      }
-
-      # Create a string print
       for($i=$start; $i < $stop; $i++) {
-        if ($printAll) {
-          $strPrint .= $i  . " : " . $assoArr[$i] . "</br>";
-        } else if($assoArr[$i]) {
-          $strPrint .= $i  . " : " . $assoArr[$i] . "</br>";
-        }
+        $strPrint .= $i  . " : " . $assoArr[$i] . "</br>";
       }
 
 

@@ -74,6 +74,7 @@ class GameRoundTest extends TestCase
      *
      * Construct object and verify that the object is as expected
      * Test to get the round of dice as an array w ints
+     * Also get the histogram
      *
      */
     public function testGetDiceResult()
@@ -86,6 +87,10 @@ class GameRoundTest extends TestCase
         $diceArr = $aGameRound3->getDiceResult();
         $isArr = is_array($diceArr);
         $this->assertTrue($isArr);
+
+        $histogram = $aGameRound3->getHistogram();
+        $isString = is_string($histogram);
+        $this->assertTrue($isString);
     }
 
 

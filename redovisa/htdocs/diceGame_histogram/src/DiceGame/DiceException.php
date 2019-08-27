@@ -3,7 +3,7 @@
 namespace Ylva\DiceGame;
 
 /**
- * Exception class for Guess.
+ * Exception class for Dice.
  */
 class DiceException extends \Exception
 {

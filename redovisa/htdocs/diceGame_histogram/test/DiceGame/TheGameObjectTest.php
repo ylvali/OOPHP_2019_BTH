@@ -289,4 +289,30 @@ class TheGameObjectTest extends TestCase
         $theGame->playGame($firstPlayer); # Start a game
         $theGame->nextPlayer();
     }
+
+
+    /**
+     *
+     * Construct object and verify that the object is as expected
+     * Test geting a histogram
+     *
+     */
+    public function testHistogram()
+    {
+        $player1 = new Player();
+        $player2 = new Player();
+        $player3 = new Player();
+        $playerArr = [$player1, $player2, $player3];
+        $nrDice = 5;
+
+        $theGame = new TheGame($nrDice, $playerArr);
+        $this->assertInstanceOf("\Ylva\DiceGame\TheGame", $theGame);
+
+        $firstPlayer = $theGame->getFirstPlayer(); # Get the first player
+        $theGame->playGame($firstPlayer); # Start a game
+
+        $histogram = $theGame->getHistogram();
+        $isString = is_string($histogram);
+        $this->assertTrue($isString);
+    }
 }
