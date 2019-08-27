@@ -32,6 +32,10 @@ if (isset($_SESSION['theGame'])) {
     $histogram = $theGame->getHistogram();
     echo($histogram);
 
+    # Get game statistics
+    $statistics = $theGame->getStatistics();
+    echo($statistics);
+
     # Print the players score
     $thePlayersRes = $theGame->getPlayersScore();
 
@@ -47,6 +51,10 @@ if (isset($_SESSION['theGame'])) {
     # Get the histogram
     $histogram = $theGame->getHistogram();
     echo($histogram);
+
+    # Get game statistics
+    $statistics = $theGame->getStatistics();
+    echo($statistics);
 
     # Print the players score
     $thePlayersRes = $theGame->getPlayersScore();

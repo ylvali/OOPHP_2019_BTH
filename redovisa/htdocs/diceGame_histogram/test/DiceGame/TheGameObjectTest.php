@@ -235,10 +235,16 @@ class TheGameObjectTest extends TestCase
         $isBoolean = is_bool($keepPlaying);
         $this->assertTrue($isBoolean);
 
-        # Play a few times so assure both true and false are tested
-        $theGame->playGame();
-        $theGame->playGame();
-        $theGame->playGame();
+        $isH = False; # Is human
+        $hWon = True; # Has won
+        $scoreRes = 0; # 0 in score
+        $dice = [];
+        $player = $firstPlayer;
+
+        # Checks that the computer will keep playing based on
+        # a decision from the statistics
+        $userData = $theGame->getUI($isH, $hWon, $scoreRes, $dice, $player);
+
     }
 
 

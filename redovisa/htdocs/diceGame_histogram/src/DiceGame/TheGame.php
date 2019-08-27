@@ -24,7 +24,9 @@ class TheGame
    * @var object $winner            The winning player (Player object)
    * @var object $currentPlayer     The current player (Player object)
    * @var object $currentGameRound  The current game round (Game round object)
-   * @var boolean $playAgain         Play the same round again
+   * @var boolean $playAgain        Play the same round again
+   * @var int $nrRounds             The nr of rounds
+   * @var int $nrWonRounds        The nr of won rounds
    *
    */
 
@@ -35,6 +37,8 @@ class TheGame
     private $currentPlayer;
     private $currentGameRound;
     private $playAgain;
+    private $nrRounds;
+    private $nrWonRounds;
 
 
   /**
@@ -200,18 +204,21 @@ class TheGame
 
     /**
     *
-    * Will computer keep playing? Random desicion.
+    * Will computer keep playing?
+    *
     * @return boolean $keepPlay   True if computer will keep on playing
     *
     */
     public function computerPlay()
     {
-        # Random integer between 0 - 1
-        $decision = rand(0, 1);
-        if ($decision == 0) {
-            $playOn = false;
-        } else {
-            $playOn = true;
+        # If less than 11% of the game round have been won,
+        # the computer will keep playing
+
+        $playOn = false;
+
+        $gamesWon = $this->getStatistics();
+        if ($gamesWon < 0.11) {
+          $playOn = true;
         }
 
         return $playOn;
@@ -320,6 +327,10 @@ class TheGame
             $hasWon = $thisRound->wonRound();
             $diceRes = $thisRound->getDiceResult();
 
+            # Add round to the statistics
+            $this->addRound($hasWon);
+
+            # Get the user interface
             $userInterfaceVars = $this->getUI($isHuman, $hasWon, $theScore, $diceRes, $thePlayer);
         }
 
@@ -383,5 +394,38 @@ class TheGame
         $nextPlayer = $this->currentPlayer->getNextPlayer();
         $this->currentPlayer = $nextPlayer;
         $this->playAgain = false;
+    }
+
+
+    /**
+    *
+    * Game statistics
+    * Add round
+    * Percentage of the nr times that nr 1 has been encountered in the previous rounds
+    * @return void
+    *
+    */
+    public function addRound($hasWon = null)
+    {
+        $this->nrRounds += 1;
+        if($hasWon) {
+          $this->nrWonRounds +=1;
+        }
+    }
+
+
+    /**
+    *
+    * Game statistics
+    * Check statistics
+    * Percentage of the nr times that nr 1 has been encountered in the previous rounds
+    * @return void
+    *
+    */
+    public function getStatistics()
+    {
+        $res = $this->nrWonRounds / $this->nrRounds;
+
+        return $res;
     }
 }
