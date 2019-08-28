@@ -1,6 +1,6 @@
 <?php
 
-namespace Ylva\DiceGame;
+namespace Anax\DiceGame2;
 
 /**
  * A interface for a classes supporting histogram reports.

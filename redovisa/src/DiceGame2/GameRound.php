@@ -1,5 +1,5 @@
 <?php
-namespace Ylva\DiceGame;
+namespace Anax\DiceGame2;
 
 /*
 *  Class : GameRound

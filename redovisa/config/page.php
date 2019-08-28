@@ -23,7 +23,8 @@ return [
                 "css/dbwebb-se.min.css",
                 "css/extra.css",
                 "css/theGame.css",
-                "css/theDiceGame.css"
+                "css/theDiceGame.css",
+                "css/theDiceGame2.css"
                 //"css/another.min.css",
             ],
             "javascripts" => [

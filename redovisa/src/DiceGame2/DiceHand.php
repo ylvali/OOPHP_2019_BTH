@@ -1,11 +1,9 @@
 <?php
 
-namespace Ylva\DiceGame;
+namespace Anax\DiceGame2;
 
 /*
 *  Class : DiceHand
-* Implements the interface for the histogram.
-* Can display the nr series of dices in a diagram.
 *
 */
 
@@ -16,11 +14,8 @@ namespace Ylva\DiceGame;
 *
 */
 
-class DiceHandHistogram implements HistogramInterface
+class DiceHand
 {
-
-    use HistogramTrait2;
-
   /**
    *
    * @var int $nrDice        The nr of dice used
@@ -50,9 +45,6 @@ class DiceHandHistogram implements HistogramInterface
 
         # Create the dice
         $this->createDice();
-
-        # Create the histogram
-        $this->setHistogram();
     }
 
 
@@ -95,32 +87,11 @@ class DiceHandHistogram implements HistogramInterface
     public function throwDice()
     {
         $counter = $this->nrDice;
-        # $diceArr = $this->dice;
+        $diceArr = $this->dice;
 
         # Loop through the array of dice & throw each one
         for ($i=0; $i<$counter; $i++) {
-            $this->dice[$i]->throwDice();
-        }
-
-        # Set new histogram
-        $this->setHistogram();
-    }
-
-
-    /**
-    *
-    * Create a histogram
-    *
-    * @return void
-    *
-    */
-    public function setHistogram()
-    {
-        $nrOfDice = $this->nrDice;
-
-        for ($i=0; $i<$nrOfDice; $i++) {
-            # Add the new dice to the series in the histogram (in Trait)
-            $this->serie[] = $this->dice[$i]->getDiceNr();
+            $diceArr[$i]->throwDice();
         }
     }
 }

@@ -43,7 +43,5 @@ class HistogramObjectTest extends TestCase
         $isString = is_string($stringData);
 
         $this->assertEquals($isString, $exp);
-
     }
-
 }

@@ -235,16 +235,24 @@ class TheGameObjectTest extends TestCase
         $isBoolean = is_bool($keepPlaying);
         $this->assertTrue($isBoolean);
 
-        $isH = False; # Is human
-        $hWon = True; # Has won
+        $isH = false; # Is human
+        $hWon = true; # Has won
         $scoreRes = 0; # 0 in score
         $dice = [];
         $player = $firstPlayer;
 
         # Checks that the computer will keep playing based on
         # a decision from the statistics
-        $userData = $theGame->getUI($isH, $hWon, $scoreRes, $dice, $player);
+        $theGame->getUI($isH, $hWon, $scoreRes, $dice, $player);
 
+        # Test that when more rounds are played,
+        # the statistics will decide another percentage for continuation
+        for ($i=0; $i<25; $i++) {
+            $theGame->playGame();
+            $keepPlaying = $theGame->computerPlay();
+            $isBool = is_bool($keepPlaying);
+            $this->assertTrue($isBool);
+        }
     }
 
 
@@ -300,10 +308,10 @@ class TheGameObjectTest extends TestCase
     /**
      *
      * Construct object and verify that the object is as expected
-     * Test geting a histogram
+     * Test getting a histogram & statistics report
      *
      */
-    public function testHistogram()
+    public function testHistogramAndStatistics()
     {
         $player1 = new Player();
         $player2 = new Player();
@@ -319,6 +327,10 @@ class TheGameObjectTest extends TestCase
 
         $histogram = $theGame->getHistogram();
         $isString = is_string($histogram);
+        $this->assertTrue($isString);
+
+        $statistics = $theGame->getStatistics();
+        $isString = is_string($statistics);
         $this->assertTrue($isString);
     }
 }

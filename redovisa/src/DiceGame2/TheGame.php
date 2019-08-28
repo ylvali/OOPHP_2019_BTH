@@ -1,5 +1,5 @@
 <?php
-namespace Ylva\DiceGame;
+namespace Anax\DiceGame2;
 
 /*
 *  Class : TheGame
@@ -276,8 +276,8 @@ class TheGame
             if ($isHuman) {
                 $userData .= "<p> You have collected ".$scoreRes."points. <br/>
                               Do you want to keep playing? </p>";
-                $userData .= "<button><a href='playAgain.php?play=yes'> Yes </a> </button>";
-                $userData .= "<button><a href='playAgain.php?play=no'> No </a> </button>";
+                $userData .= "<button class='gameBtn'><a href='playAgain?play=yes'> Yes </a> </button>";
+                $userData .= "<button class='gameBtn'><a href='playAgain?play=no'> No </a> </button>";
             } else if (!$isHuman) {
                 # Check if computer will keep on playing
                 $playOn = $this->computerPlay();
@@ -287,18 +287,18 @@ class TheGame
                     $userData .= "<p> $scoreRes </p>";
                     $userData .= "Computer will keep on playing.";
 
-                    $userData .= "<button><a href='playAgain.php?play=yes'> OK </a> </button>";
+                    $userData .= "<button class='gameBtn'><a href='playAgain?play=yes'> OK </a> </button>";
                 } else {
                     $userData .= "<p> Collected points this round: </p>";
                     $userData .= "<p> $scoreRes </p>";
                     $userData .= "Computer will collect the points now.";
 
-                    $userData .= "<button><a href='playAgain.php?play=no'> OK </a> </button>";
+                    $userData .= "<button class='gameBtn'><a href='playAgain?play=no'> OK </a> </button>";
                 }
             }
         } else {
             $userData .= "<br/>Sorry, no points. <br/> ";
-            $userData .= "<button><a href='nextPlayer.php'> Next player </a> </button>";
+            $userData .= "<button class='gameBtn'><a href='nextPlayer'> Next player </a> </button>";
         }
 
         return $userData;
@@ -451,8 +451,8 @@ class TheGame
     {
         $res = $this->nrWonRounds / $this->nrRounds;
         $resPercentage = round((float)$res * 100) . '%';
-        $strRes = "<h2> Won rounds: </h2> ".$resPercentage;
-        $strRes .= "<h2> Nr of rounds: </h2>".$this->nrRounds;
+        $strRes = "<h3> Won rounds: </h3> ".$resPercentage;
+        $strRes .= "<h3> Nr of rounds: </h3>".$this->nrRounds;
 
         return $strRes;
     }

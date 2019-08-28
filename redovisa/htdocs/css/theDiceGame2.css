@@ -1,0 +1,52 @@
+
+.TheDiceGame2 {
+    width: 100%;
+    margin: 0 auto;
+    min-height: 600px;
+    background-color: purple;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 35px;
+
+    /* BOX SHADOW by https://www.cssmatic.com/box-shadow */
+
+    -webkit-box-shadow: 5px 31px 51px 44px rgba(133, 111, 1, 11);
+    -moz-box-shadow: 5px 31px 51px 44px rgba(133, 111, 1, 11);
+    box-shadow: 15px 31px 57px 44px rgba(133, 111, 1, 11);
+}
+
+
+.gameBtn {
+    min-width: 200px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 200px;
+}
+
+
+.TheDiceGame2 a {
+    color: yellow;
+    font-size: 1,5em;
+    text-decoration: none;
+}
+
+
+.TheDiceGame2 a:visited {
+    color: yellow;
+}
+
+
+.button1 {
+    min-width: 100px;
+    height: 50px;
+    background-color: #fff;
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    margin: 5px;
+}
