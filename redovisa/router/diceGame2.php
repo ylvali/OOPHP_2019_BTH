@@ -105,7 +105,6 @@ $app->router->add("diceGame2/playGame", function () use ($app) {
 
         # Print the statistics
         $statistics = $theGame->getStatistics();
-
     }
 
 
@@ -134,7 +133,7 @@ $app->router->add("diceGame2/playGame", function () use ($app) {
 
   /**
    *
-   * Play the game
+   * Reset the game
    *
    */
 
@@ -142,7 +141,7 @@ $app->router->add("diceGame2/playGame", function () use ($app) {
 
 
        // Unset all of the session variables.
-       $_SESSION = [];
+       $app->session = [];
 
        // If it's desired to kill the session, also delete the session cookie.
        // Note: This will destroy the session, and not just the session data!
@@ -226,8 +225,8 @@ $app->router->add("diceGame2/playGame", function () use ($app) {
 
         # Save the game session
         $app->session->set("theDiceGame2", serialize($theGame));
-    }   else {
-      $reply = "Session not found";
+    } else {
+        $reply = "Session not found";
     }
 
         $title = "DiceGame";

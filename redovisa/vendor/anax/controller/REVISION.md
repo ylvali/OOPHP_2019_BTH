@@ -3,6 +3,24 @@ Revision history
 
 
 
+v2.0.1 (2019-04-24)
+---------------------------------
+
+* Update README.
+* Add test cases.
+
+
+
+v2.0.0 (2019-04-24)
+---------------------------------
+
+* Tag as v2.
+* Update docker-compose.yml.
+* Update README.
+* Add samples on how to configure the router to add a controller class onto a mount point.
+
+
+
 v2.0.0-beta.8 (2018-12-03)
 ---------------------------------
 
