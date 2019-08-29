@@ -205,6 +205,7 @@ class TheGame
     /**
     *
     * Will computer keep playing?
+    * Decision based on probability
     * The computer gets braver and braver.
     *
     * @return boolean $keepPlay   True if computer will keep on playing
@@ -212,19 +213,19 @@ class TheGame
     */
     public function computerPlay()
     {
-        # If less than 11% of the game rounds have been won,
+        # Probability of winning : 5/6 = 83.33%
+
+        # If less than 83% of the game rounds have been won,
         # the computer will keep on playing
 
-        # Collects the statistics of how many rounds have been won
+        # However it will only play again once.
+
+        # This method collects the statistics of how many rounds have been won
         # That value is the base for the decision
 
-        # If few games only have been won, the chance is greater that there
-        # will be a win again - says probability.
+        # The computer gets braver, so it will play again at higher %
+        # further along the game (after more rounds)
 
-        # The computer gets braver as the game proceeds,
-        # so it will keep playing but at a higher percentage of previous wins
-
-        # However, it never plays more than one round.
 
         $gamesWon = $this->getStatisticsInt();
         $playOn = false; # Boolean for flagging if to keep on
@@ -233,15 +234,15 @@ class TheGame
             $playOn = false;
         } else {
             if ($this->nrRounds < 10) {
-                if ($gamesWon < 0.11) {
+                if ($gamesWon < 0.83) {
                     $playOn = true;
                 }
             } else if ($this->nrRounds < 20) {
-                if ($gamesWon < 0.20) {
+                if ($gamesWon < 0.89) {
                     $playOn = true;
                 }
             } else {
-                if ($gamesWon < 0.30) {
+                if ($gamesWon < 0.95) {
                     $playOn = true;
                 }
             }
