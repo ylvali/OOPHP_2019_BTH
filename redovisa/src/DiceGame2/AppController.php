@@ -202,7 +202,7 @@ class AppController implements AppInjectableInterface
          $data = [
              "class" => "theDiceGame2",
              "gameHeader" => "<h1>The dice game v2</h1>",
-             "histogram" => "",
+             "histogram" => " The computer makes decisions if to keep playing based on the probability of winning a round(83,33%) and the result of the rounds.",
              "players" => " Ready?",
              "content" => "<h2> Let the game begin! </h2> \n Lets play? \n".$aLink,
          ];
@@ -256,8 +256,13 @@ class AppController implements AppInjectableInterface
             # Print the players score
             $thePlayersRes = $theGame->getPlayersScore();
 
-            # Print the histogram
+            # Print the histogram of a the current round
             $histogram = $theGame->getHistogram();
+
+            # Create the histogram for the whole game
+            $aHistogram = new Histogram();
+            $aHistogram->injectData($theGame);
+            $wholeGameHistogram = $aHistogram->getAsText();
 
             # Print the statistics
             $statistics = $theGame->getStatistics();
@@ -267,7 +272,7 @@ class AppController implements AppInjectableInterface
         } else {
             # Start a new game
             $res1 = "New game session: " . strval(rand());
-            $theGame = new TheGame($nrDice, $playerArr);
+            $theGame = new TheGameHistogram($nrDice, $playerArr);
 
             # Create a first player & play
             $firstPlayer = $theGame->getFirstPlayer();
@@ -279,8 +284,13 @@ class AppController implements AppInjectableInterface
             # Print the players score
             $thePlayersRes = $theGame->getPlayersScore();
 
-            # Print the histogram
+            # Print the histogram of the current round
             $histogram = $theGame->getHistogram();
+
+            # Create the histogram for the whole game
+            $aHistogram = new Histogram();
+            $aHistogram->injectData($theGame);
+            $wholeGameHistogram = $aHistogram->getAsText();
 
             # Print the statistics
             $statistics = $theGame->getStatistics();
@@ -293,7 +303,8 @@ class AppController implements AppInjectableInterface
         $data = [
           "class" => "TheDiceGame2",
           "gameHeader" => "<h1>The dice game2 </h1>",
-          "histogram" => "<h3> Histogram </h3>".$histogram."<br/>".$statistics."<br/>",
+          "histogram" => "<h3> Histogram of this round</h3>".$histogram."<br/>".
+                         "<h3> Histogram of whole game</h3>".$wholeGameHistogram."<br/>".$statistics,
           "players" => "<h3> The players </h3>".$thePlayersRes,
           "content" => $res."</br>".$restartForm,
         ];

@@ -340,7 +340,6 @@ class TheGameObjectHistogramTest extends TestCase
 
         # Get the histogram serie for the whole game
         $serieForHistogram = $theGame->setAndGetHistogram();
-        var_dump($serieForHistogram);
         $isArr = is_array($serieForHistogram);
         $this->assertTrue($isArr);
     }
