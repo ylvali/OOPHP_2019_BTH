@@ -9,8 +9,8 @@
 
 file="ddl_all.sql"
 echo ">>> Create tables and views (ddl_all.sql) ($file)"
-mysql -uuser oophp < $file > /dev/null
+mysql -uuser -ppass oophp < $file > /dev/null
 
 file="insert.sql"
 echo ">>> Insert data (insert.sql) ($file)"
-mysql -uuser oophp < $file > /dev/null
+mysql -uuser -ppass oophp < $file > /dev/null
