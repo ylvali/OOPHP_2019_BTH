@@ -303,7 +303,7 @@ $app->router->add("productDb/add", function () use ($app) {
 
     // If values are correct add new item
     if (empty($res) && is_numeric($year)) {
-        $pic = 'placeholder.jpg';
+        $pic = '../img/purpleYellowFlo300px.jpg';
         $params = array('id'=>$id, 'name'=>$name, 'pic'=>$pic, 'year'=>$year);
         $table = 'products';
 
