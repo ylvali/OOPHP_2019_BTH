@@ -40,6 +40,11 @@ return [
                         "url" => "redovisning/kmom04",
                         "title" => "Redovisning för kmom04.",
                     ],
+                    [
+                        "text" => "Kmom05",
+                        "url" => "redovisning/kmom05",
+                        "title" => "Redovisning för kmom05.",
+                    ],
                 ],
             ],
         ],
@@ -77,6 +82,11 @@ return [
             "text" => "The dice game",
             "url" => "diceGameDisp",
             "title" => "The dice game",
+        ],
+        [
+            "text" => "The productDb",
+            "url" => "productDb",
+            "title" => "productDb",
         ],
     ],
 ];

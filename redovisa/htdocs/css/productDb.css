@@ -1,0 +1,125 @@
+
+/* CSS by YSO */
+
+.productDb {
+    /*background-size: 100% 100%;*/
+    background-attachment: scroll;
+    background-color: white;
+    /*background-image: url("../img/purpleYellowBgro.jpg");*/
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: black;
+    font-family: 'Oxygen', serif;
+    font-size: 12;
+    letter-spacing: 0.1px;
+    line-height: 22px;
+
+    width: 100%;
+    overflow:auto;
+    padding: 10px;
+    margin:10px;
+    border-radius: 12px;
+}
+
+.productDb a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Site specific */
+
+/* The table style */
+/* The table style */
+.tableStyle1 {
+    background-color: white;
+    color: black;
+    width: 100%;
+}
+
+.tableStyle1 img {
+    width: 80%;
+}
+
+.tableStyle1 td {
+   background-color: white;
+   border-bottom: solid;
+   border-color: #817d7d;
+   font-size: 0.8em;
+   height: 300px;
+   text-align: center;
+   text-transform: uppercase;
+}
+
+.tableStyle1 tr {
+    background-color: white;
+}
+
+.tableStyle1 th {
+    background-color: white;
+    border-bottom: solid;
+}
+
+
+
+
+/* The btns */
+.btn1 {
+   background-color: #fff;
+   border-radius: 10px;
+   border-style: none;
+   cursor: pointer;
+   letter-spacing: 0.9px;
+   margin: 3px;
+   padding: 10px;
+   font-size: 1.2em;
+}
+
+.btn1:hover {
+    background-color: #393434;
+    color: white;
+}
+
+.btn1Selected {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+    cursor: pointer;
+    letter-spacing: 0.9px;
+    margin: 3px;
+    padding: 10px;
+}
+
+/* Btn panel */
+.btnPanel {
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+/* The txt fields */
+.txtField1 {
+    background-color: #2b2828;
+    border-radius: 10px;
+    border-style: none;
+    color: white;
+    height: 30px;
+    margin: 5px;
+} */
+
+.form1 {
+    max-height: 500px;
+}
+
+/* itemPic */
+.itemPic {
+    padding: 20px;
+}
+
+/* presentation pic */
+.presImg {
+    width: 200px;
+}

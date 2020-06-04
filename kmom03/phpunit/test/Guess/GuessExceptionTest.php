@@ -22,7 +22,6 @@ class GuessCreateObjectTestException extends TestCase
      *
      * @expectedException \Ylva\Guess\GuessException
      *
-     *
      */
     public function testExpectedExceptionIsRaised()
     {

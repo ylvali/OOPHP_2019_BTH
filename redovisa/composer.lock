@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06f5ece238c0b988aeec2983067f7160",
+    "content-hash": "dbffc6997e48179ade5d003650c4ea22",
     "packages": [
         {
             "name": "anax/anax-flat",
@@ -404,6 +404,51 @@
                 "mvc"
             ],
             "time": "2019-04-24T18:11:44+00:00"
+        },
+        {
+            "name": "anax/database",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/canax/database.git",
+                "reference": "9af3983b49adcb8038541a6508bc0a9671d46701"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/canax/database/zipball/9af3983b49adcb8038541a6508bc0a9671d46701",
+                "reference": "9af3983b49adcb8038541a6508bc0a9671d46701",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Anax\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mikael Roos",
+                    "email": "mos@dbwebb.se"
+                }
+            ],
+            "description": "Anax Database module, to work with databases.",
+            "homepage": "https://dbwebb.se/anax",
+            "keywords": [
+                "Database Access Layer",
+                "database",
+                "dba"
+            ],
+            "time": "2020-05-06T12:41:29+00:00"
         },
         {
             "name": "anax/di",

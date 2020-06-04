@@ -24,7 +24,8 @@ return [
                 "css/extra.css",
                 "css/theGame.css",
                 "css/theDiceGame.css",
-                "css/theDiceGame2.css"
+                "css/theDiceGame2.css",
+                "css/productDb.css"
                 //"css/another.min.css",
             ],
             "javascripts" => [
