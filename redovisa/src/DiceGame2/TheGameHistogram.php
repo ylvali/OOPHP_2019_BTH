@@ -207,27 +207,37 @@ class TheGameHistogram implements HistogramInterface
     /**
     *
     * Will computer keep playing?
-    * Decision based on probability
-    * The computer gets braver and braver.
+    * Decision based on the probability of winning
+    * and of how many rounds that have been won.
+    * Plus: the computer gets braver and braver.
     *
     * @return boolean $keepPlay   True if computer will keep on playing
     *
     */
     public function computerPlay()
     {
-        # Probability of winning : 5/6 = 83.33%
 
-        # If less than 83% of the game rounds have been won,
+        # The probability of winning is calculated by the formula:
+        # 1 - ((5/6) ^ nr dices)
+        #
+        # This is because the probability of all of the dice NOT
+        # including the nr 1 is 5/6 ^ nr dice. Its according to the
+        # specific multiplication rule formula and the probabilty of independent
+        # occurances happening together (like the independent dice):
+        # multiply the chance of an event with the chance of the other event.
+        #
+        # It is subtracted from 1 to get the probability of the opposite -
+        # getting a certain nr.
+        #
+        # The computer uses this nr to base the decision on.
+        # If less than $winProbability of the game rounds have been won,
         # the computer will keep on playing
 
-        # However it will only play again once.
+        # However, the computer gets braver as the game proceeds
+        # and more % is added to the $winProbability.
+        # However, it never plays more than one round.
 
-        # This method collects the statistics of how many rounds have been won
-        # That value is the base for the decision
-
-        # The computer gets braver, so it will play again at higher %
-        # further along the game (after more rounds)
-
+        $winProbability = 1 - (pow((5/6), $this->nrDice));
 
         $gamesWon = $this->getStatisticsInt();
         $playOn = false; # Boolean for flagging if to keep on
@@ -236,15 +246,15 @@ class TheGameHistogram implements HistogramInterface
             $playOn = false;
         } else {
             if ($this->nrRounds < 10) {
-                if ($gamesWon < 0.83) {
+                if ($gamesWon < $winProbability) {
                     $playOn = true;
                 }
             } else if ($this->nrRounds < 20) {
-                if ($gamesWon < 0.89) {
+                if ($gamesWon < ($winProbability + 0.10)) {
                     $playOn = true;
                 }
             } else {
-                if ($gamesWon < 0.95) {
+                if ($gamesWon < ($winProbability + 0.20)) {
                     $playOn = true;
                 }
             }
@@ -455,10 +465,12 @@ class TheGameHistogram implements HistogramInterface
     */
     public function getStatistics()
     {
+        $winProbability = 1 - (pow((5/6), $this->nrDice)); # Explained under method 'computerPlay'
         $res = $this->nrWonRounds / $this->nrRounds;
         $resPercentage = round((float)$res * 100) . '%';
         $strRes = "<h3> Won rounds: </h3> ".$resPercentage;
         $strRes .= "<h3> Nr of rounds: </h3>".$this->nrRounds;
+        $strRes .= "<h3> Winning probability: </h3>".round((float)$winProbability * 100, 2) . '%';
 
         return $strRes;
     }

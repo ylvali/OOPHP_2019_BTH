@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1563630809">
+  <project timestamp="1563630809">
+    <package name="Ylva\Guess">
+      <file name="C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\kmom03\phpunit\src\Guess/Guess.php">
+        <class name="Ylva\Guess\Guess" namespace="Ylva\Guess">
+          <metrics complexity="11" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="25" coveredelements="25"/>
+        </class>
+        <line num="28" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="10"/>
+        <line num="30" type="stmt" count="10"/>
+        <line num="31" type="stmt" count="10"/>
+        <line num="33" type="stmt" count="10"/>
+        <line num="34" type="stmt" count="2"/>
+        <line num="36" type="stmt" count="10"/>
+        <line num="45" type="method" name="random" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="47" type="stmt" count="2"/>
+        <line num="48" type="stmt" count="2"/>
+        <line num="49" type="stmt" count="2"/>
+        <line num="58" type="method" name="tries" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="60" type="stmt" count="3"/>
+        <line num="70" type="method" name="number" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="72" type="stmt" count="4"/>
+        <line num="85" type="method" name="makeGuess" visibility="public" complexity="6" crap="6" count="5"/>
+        <line num="87" type="stmt" count="5"/>
+        <line num="88" type="stmt" count="1"/>
+        <line num="91" type="stmt" count="4"/>
+        <line num="92" type="stmt" count="1"/>
+        <line num="94" type="stmt" count="4"/>
+        <line num="96" type="stmt" count="4"/>
+        <line num="97" type="stmt" count="2"/>
+        <line num="98" type="stmt" count="2"/>
+        <line num="99" type="stmt" count="1"/>
+        <line num="102" type="stmt" count="1"/>
+        <metrics loc="104" ncloc="65" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="25" coveredelements="25"/>
+      </file>
+      <file name="C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\kmom03\phpunit\src\Guess/GuessException.php">
+        <class name="Ylva\Guess\GuessException" namespace="Ylva\Guess">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="11" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+    </package>
+    <metrics files="2" loc="115" ncloc="73" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="25" coveredelements="25"/>
+  </project>
+</coverage>

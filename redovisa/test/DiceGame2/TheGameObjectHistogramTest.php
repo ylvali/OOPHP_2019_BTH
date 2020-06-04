@@ -247,7 +247,7 @@ class TheGameObjectHistogramTest extends TestCase
 
         # Test that when more rounds are played,
         # the statistics will decide another percentage for continuation
-        for ($i=0; $i<25; $i++) {
+        for ($i=0; $i<50; $i++) {
             $theGame->playGame();
             $keepPlaying = $theGame->computerPlay();
             $isBool = is_bool($keepPlaying);

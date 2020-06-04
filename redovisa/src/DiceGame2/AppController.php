@@ -196,13 +196,19 @@ class AppController implements AppInjectableInterface
           // Link for starting the game
           $aLink = "<a href='playGame'> Start game </a>";
 
+          $info = " The computer makes decisions if to continue playing based on the probability of winning & ";
+          $info .= " how many rounds have been won so far. If the current % of won games is below ";
+          $info .= " what is probable, the computer will keep on playing one time.<br/><br/>";
+          $info .= " The probability is calculated by 1 - ((5/6) ^ nr dice)<br/><br/>";
+          $info .= " When more rounds have been played, the computer gets braver and plays on a higher % than the probability.";
+
 
          // Setting the content to send to the view
          $title = "Test";
          $data = [
              "class" => "theDiceGame2",
              "gameHeader" => "<h1>The dice game v2</h1>",
-             "histogram" => " The computer makes decisions if to keep playing based on the probability of winning a round(83,33%) and the result of the rounds.",
+             "histogram" => $info ."<br/>",
              "players" => " Ready?",
              "content" => "<h2> Let the game begin! </h2> \n Lets play? \n".$aLink,
          ];

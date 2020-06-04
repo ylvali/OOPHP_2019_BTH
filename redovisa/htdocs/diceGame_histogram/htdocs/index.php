@@ -13,7 +13,7 @@ $aPlayer3 = new Player();
 $aPlayer3->setName('Player3');
 $aPlayer3->setIsHuman(true);
 
-$nrDice = 10;
+$nrDice = 5;
 $playerArr = [$aPlayer, $aPlayer2, $aPlayer3];
 
 

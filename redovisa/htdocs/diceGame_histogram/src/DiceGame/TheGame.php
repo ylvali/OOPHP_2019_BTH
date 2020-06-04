@@ -205,26 +205,36 @@ class TheGame
     /**
     *
     * Will computer keep playing?
-    * The computer gets braver and braver.
+    * Decision based on the probability of winning
+    * and of how many rounds that have been won.
+    * Plus: the computer gets braver and braver.
     *
     * @return boolean $keepPlay   True if computer will keep on playing
     *
     */
     public function computerPlay()
     {
-        # If less than 11% of the game rounds have been won,
+        # The probability of winning is calculated by the formula:
+        # 1 - ((5/6) ^ nr dices)
+        #
+        # This is because the probability of all of the dice NOT
+        # including the nr 1 is 5/6 ^ nr dice. Its according to the
+        # specific multiplication rule formula and the probabilty of independent
+        # occurances happening together (like the independent dice):
+        # multiply the chance of an event with the chance of the other event.
+        #
+        # It is subtracted from 1 to get the probability of the opposite -
+        # getting a certain nr.
+        #
+        # The computer uses this nr to base the decision on.
+        # If less than $winProbability of the game rounds have been won,
         # the computer will keep on playing
 
-        # Collects the statistics of how many rounds have been won
-        # That value is the base for the decision
-
-        # If few games only have been won, the chance is greater that there
-        # will be a win again - says probability.
-
-        # The computer gets braver as the game proceeds,
-        # so it will keep playing but at a higher percentage of previous wins
-
+        # However, the computer gets braver as the game proceeds
+        # and more % is added to the $winProbability.
         # However, it never plays more than one round.
+
+        $winProbability = 1 - (pow((5/6), $this->nrDice));
 
         $gamesWon = $this->getStatisticsInt();
         $playOn = false; # Boolean for flagging if to keep on
@@ -233,15 +243,15 @@ class TheGame
             $playOn = false;
         } else {
             if ($this->nrRounds < 10) {
-                if ($gamesWon < 0.11) {
+                if ($gamesWon < $winProbability) {
                     $playOn = true;
                 }
             } else if ($this->nrRounds < 20) {
-                if ($gamesWon < 0.20) {
+                if ($gamesWon < ($winProbability + 0.10)) {
                     $playOn = true;
                 }
             } else {
-                if ($gamesWon < 0.30) {
+                if ($gamesWon < ($winProbability + 0.10)) {
                     $playOn = true;
                 }
             }
@@ -449,10 +459,12 @@ class TheGame
     */
     public function getStatistics()
     {
+        $winProbability = 1 - (pow((5/6), $this->nrDice));
         $res = $this->nrWonRounds / $this->nrRounds;
-        $resPercentage = round((float)$res * 100) . '%';
+        $resPercentage = round((float)$res * 100, 2) . '%';
         $strRes = "<h2> Won rounds: </h2> ".$resPercentage;
         $strRes .= "<h2> Nr of rounds: </h2>".$this->nrRounds;
+        $strRes .= "<h2> Winning probability: </h2>".round((float)$winProbability * 100, 2) . '%';
 
         return $strRes;
     }
