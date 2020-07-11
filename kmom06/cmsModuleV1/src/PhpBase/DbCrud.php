@@ -5,13 +5,13 @@
  *  Database - create | read | update | delete
  *
  * @category DbConnection
- * @package  ProjectDb
+ * @package  PhpBase
  * @author   Ylva Sjölin <yso@spektatum.com>
  * @license  free to use
  * @link     none
  **/
 
-namespace Ylva\ProductDb;
+namespace Ylva\PhpBase;
 use PDO;
 use Exception;
 
@@ -26,7 +26,7 @@ use Exception;
  * To be updated with more security like htmlentities?
  *
  * @category DbConnection
- * @package  ProjectDb
+ * @package  PhpBase
  * @author   Ylva Sjölin <yso@spektatum.com>
  * @license  free to use
  * @link     none
@@ -145,7 +145,7 @@ class DbCrud implements DbCrudInterface
      * array = (columnName => newValue)
      *
      * @param string $table            : which table to use
-     * @param array $params            : (columnName => newValue)
+     * @param string $params           : (columnName => newValue)
      * @param string $identifyingVar   : identifying variable
      * @param string $identifyingValue : identifying value
      *
