@@ -72,13 +72,26 @@ class SendVar
     /**
      * Collects value from $_POST
      *
-     * @param string $varName : name of $_POST value
+     * @param string $key : key $_POST 
      *
      * @return string $var : the value of $_POST
      */
-    public function postValue($varName)
+    public function postValue($key)
     {
-        $var = isset($_POST[$varName]) ? $_POST[$varName] : null;
+        // Mos solution
+        // If the key is an array
+        if (is_array($key)) {
+
+            // Create numeric associative array
+            $key = array_flip($key);
+
+            // Get the intersecting key values from $_POST
+            // Replace what is found to the original key
+            return array_replace($key, array_intersect_key($_POST, $key));
+        }
+
+        // Else
+        $var = isset($_POST[$key]) ? $_POST[$key] : null;
         if ($var) {
             $var = htmlentities(strip_tags(trim($var)));
         }

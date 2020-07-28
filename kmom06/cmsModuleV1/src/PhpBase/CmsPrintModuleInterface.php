@@ -20,7 +20,7 @@ use Exception;
  *  It prints the result in a project specific way
  *  Printing tailored to suit
  *
- *  php version 7
+ *  Php version 7
  *
  * @category CmsPrintModuleInterface
  * @package  PhpBase
@@ -35,7 +35,7 @@ interface CmsPrintModuleInterface
      * The printPage
      * prints a page - project specific data
      *
-     * @param array $data   : the data for printing
+     * @param array $data : the data for printing
      *
      * @return string: $res : the formated result
      */
@@ -46,7 +46,7 @@ interface CmsPrintModuleInterface
      * The printBlog
      * prints a page - project specific data
      *
-     * @param array $data   : the data for printing
+     * @param array $data : the data for printing
      *
      * @return string: $res : the formated result
      */

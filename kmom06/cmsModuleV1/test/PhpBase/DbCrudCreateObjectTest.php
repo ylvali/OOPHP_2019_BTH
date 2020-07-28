@@ -49,14 +49,13 @@ class DbCrudCreateObjectTest extends TestCase
         // Table to use
         $table = 'products';
 
-        // Test reading an existing table
-        // $table = 'products';
+        // Test reading an existing table // $table = 'products';
         $res = $dbCrud->read($table);
         $this->assertNotNull($res);
 
         // Test doing a read with sorting
-        $r = $dbCrud->read($table, 'id', 'ASC');
-        $this->assertNotNull($r);
+        $read = $dbCrud->read($table, 'id', 'ASC');
+        $this->assertNotNull($read);
 
         // Test free text sql
         $sql = 'SELECT * FROM products';
@@ -64,30 +63,34 @@ class DbCrudCreateObjectTest extends TestCase
         $this->assertNotNull($res2);
         //var_dump($res2);
 
-        // Test search function
-        // $table = 'products';
+        // Test search function // $table = 'products';
         $column = 'id';
         $name = 'prod11';
         $res3 = $dbCrud->search($table, $column, $name);
-        //var_dump($res3);
         $this->assertNotNull($res3);
 
-        // Test update function
-        // $table = 'products';
+        $exact = true;
+        $res3 = $dbCrud->search($table, $column, $name, $exact);
+        $this->assertNotNull($res3);
+
+        // Test isEmpty
+        $res3 = $dbCrud->isEmpty($table, $column, $name, $exact);
+        $this->assertTrue($res3);
+
+        // Test update function // $table = 'products';
         $params = ['id'=>'prod1', 'name'=>'test4', 'year'=>'2020'];
         $identifyingVar = 'id';
         $identifyingValue = 'prod1';
-        $res4 = $dbCrud->update($table, $params, $identifyingVar, $identifyingValue);
+        $res4 = $dbCrud
+        ->update($table, $params, $identifyingVar, $identifyingValue);
         $this->assertNotNull($res4);
 
         // Test create function
-        // $table = 'products';
         $params = ['id'=>'prod12', 'name'=>'product12', 'year'=>'2020'];
         $res5 = $dbCrud->create($table, $params);
         $this->assertNotNull($res5);
 
         // Test delete function
-        // $table = 'products';
         $column2 = 'id';
         $value = 'prod12';
         $res6 = $dbCrud->delete($table, $column2, $value);
@@ -101,12 +104,6 @@ class DbCrudCreateObjectTest extends TestCase
         $notThere = empty($res7);
         $this->assertTrue($notThere);
 
-        // // Test the ordering functionality
-        // $orderBy = 'id';
-        // $order = 'DESC';
-        // $res = $dbCrud->readInOrder($table, $orderBy, $order);
-        // // var_dump($res);
-        // $this->assertNotNull($res);
 
         // Test counting the rows
         $idVar = 'id';
@@ -126,7 +123,8 @@ class DbCrudCreateObjectTest extends TestCase
         $offset = 0;
         $orderBy = 'id';
         $order = 'DESC';
-        $res = $dbCrud->selectLimitOffset($table, $limit, $offset, $orderBy, $order);
+        $res = $dbCrud
+        ->selectLimitOffset($table, $limit, $offset, $orderBy, $order);
         // var_dump($res);
     }
 }

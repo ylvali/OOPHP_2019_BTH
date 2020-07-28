@@ -54,6 +54,9 @@ class SendVarTest extends TestCase
         // Test getting an empty value : $_POST
         $res3 = $sendVar->postValue($test);
         $this->assertNull($res3);
+        // Test array
+        $arrT = array('one', 'two', 'three');
+        $res3 = $sendVar->postValue($arrT);
 
         // Test setting a value and then getting it : $_POST
         $sendVar->setPostValue($test, $test);

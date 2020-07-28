@@ -3,8 +3,7 @@
 -- Create the database --
 CREATE DATABASE IF NOT EXISTS oophp;
 
--- Decide which database that you will
-se --
+-- Decide which database that you will use --
 USE oophp;
 
 -- Create a user with access to the database, independant of hostname
