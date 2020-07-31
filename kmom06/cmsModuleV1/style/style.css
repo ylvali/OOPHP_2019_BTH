@@ -27,36 +27,41 @@ h1 {
 }
 
 .nav {
-    background-color: white;
-    color: black;
+    background-color: #000;
+    color: #746767;
     height: 30px;
-    opacity: 0.9;
-    padding-top: 1%;
     padding: 2.5%;
     text-align: right;
     width: 95%;
     text-transform: uppercase;
 }
 
+.nav a{
+     text-decoration: none;
+     color: #cb8cbc;
+     letter-spacing: 0.6px;
+}
+
+.nav a:hover{
+     text-decoration: none;
+     color: #aa0683;
+     letter-spacing: 0.6px;
+}
+
 .cornerImg {
-   background-color: red;
-   background-image: url("../img/purpleYellowBig.jpg");
+   background-color: #00d1ff;
    background-size: 100% 100%;
    border-radius: 24px;
-   float: left;
-   height: 40px;
-   text-transform: uppercase;
-   width: 50px;
+   float: right;
+   height: 30px;
+   width: 30px;
 }
 
 .headerImg {
     background-attachment: fixed;
-    background-color: #1d0a2a;
-    background-image: url("../img/purpleYellowBig.jpg");
-    background-position: top left;
-    background-repeat: no-repeat;
+    background-color: #c21a63;
     background-size: 100%;
-    height: 430px;
+    height: 50px;
     opacity: 0.9;
     width: 100%;
 }
@@ -183,31 +188,20 @@ h1 {
     margin: 5px;
 }
 
-/* itemPic */
-.itemPic {
-    padding: 20px;
-}
+/* submenu */
 
-/* intro page pic */
-.introPic {
-    width: 60%;
-    min-width: 250px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-#titleBar{
+#titleBar {
     width: 100%;
-    max-width: 700px;
+    max-width: 150px;
     margin: 0 auto;
     text-align: center;
+    background-color: #fff;;
 }
 
 #titleBar a {
     text-transform: uppercase;
     text-decoration: none;
-    display: block;
-    padding: 50px;
+    padding: 10px;
     cursor: pointer;
     color: #000;
     border-bottom: solid black;
@@ -216,9 +210,6 @@ h1 {
 #titleBar a:hover {
     text-transform: uppercase;
     text-decoration: none;
-    display: block;
-    padding: 50px;
     cursor: pointer;
     color: #8a888c;
     border-bottom: solid #7e6c86;
-}

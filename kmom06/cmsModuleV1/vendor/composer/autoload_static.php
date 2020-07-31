@@ -11,12 +11,20 @@ class ComposerStaticInit3db3544d9ea2849f195717c2ffd2c307
         array (
             'Ylva\\' => 5,
         ),
+        'M' => 
+        array (
+            'Michelf\\' => 8,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Ylva\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Michelf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/michelf/php-markdown/Michelf',
         ),
     );
 

@@ -5,27 +5,31 @@
     <link rel="stylesheet" href="style/extra.css">
     <link rel="stylesheet" href="style/normalize.min.css" />
     <link rel="icon" href="img/purpleYellowFlo.jpg" type="image/png">
-
-
 </head>
 <body>
 
 <div class='nav'>
-    <p> </p>
+    <?php echo $navBar ?>
+    <div class='cornerImg'></div>
 </div>
+<div class='headerImg'>  </div>
 <div class='mainContent'>
 
     <div class='contentCenter'>
         <div id='titleBar'>
-
-            <?php echo $navBar ?> <br/>
+            <h1> <?php echo $route ?> </h1>
+            <?php echo $navBarSub ?> <br/>
         </div>
-        <p> SubNav: <?php echo $navBarSub ?> </p> <br/>
-        <p> Chosen: <?php echo $choice ?> </p> <br/>
-        <?php echo $content ?>
+
+        <?php
+        // load content
+        foreach($view as $seeThis) {
+            include $seeThis;
+        }
+         ?>
 
     </div>
-    </div>
+</div>
 
 </div>
 <div class='footer'>     <p> | Cms Demo |</p>

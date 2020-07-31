@@ -128,6 +128,11 @@ class  CmsModuleCreateObjectTest extends TestCase
         $idTitle = 'test13';
         $res2 = $cmsModule->delete($blogTable, $column1, $idTitle);
 
+        // The soft delete sets the deleted to a date
+        $column1 = 'title';
+        $idTitle = 'test12';
+        $res2 = $cmsModule->softDelete($blogTable, $column1, $idTitle);
+
         $column2 = 'title';
         $idTitle2 = 'test5';
         $res2 = $cmsModule->delete($pageTable, $column2, $idTitle2);

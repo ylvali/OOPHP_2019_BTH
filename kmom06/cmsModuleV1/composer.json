@@ -10,5 +10,8 @@
     ],
     "autoload": {
         "psr-4": {"Ylva\\": "src/"}
+    },
+    "require": {
+        "michelf/php-markdown": "^1.9"
     }
 }

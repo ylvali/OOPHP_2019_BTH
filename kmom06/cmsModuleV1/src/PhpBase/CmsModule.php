@@ -27,6 +27,7 @@ use Exception;
  * @author   Ylva Sjölin <yso@spektatum.com>
  * @license  free to use
  * @link     none
+ * @phpcs:disable PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore
  **/
 class CmsModule
 {

@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Ylva\\' => array($baseDir . '/src'),
+    'Michelf\\' => array($vendorDir . '/michelf/php-markdown/Michelf'),
 );

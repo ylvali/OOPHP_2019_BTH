@@ -16,7 +16,10 @@ use Exception;
 /**
  *   CmsPrintModule
  *   php version 7
- *   The cmsPrintModule that prints data from the cmsModule
+ *  The cmsPrintModule that prints data from the cmsModule.
+ *  It also santizises all data for the printng.
+ *  It is project specific & hard coded that way, with an easy to
+ *  update structure.
  *
  * @category CmsPrintModule
  * @package  PhpBase
@@ -29,6 +32,7 @@ class CmsPrintModule implements CmsPrintModuleInterface
     /**
      * CmsModule enables printing Cms for a project
      * Project specific tailoring prints to the data
+     * Sanitizes according to the database structure
      */
 
     /**
@@ -36,6 +40,26 @@ class CmsPrintModule implements CmsPrintModuleInterface
      */
     public function __construct()
     {
+    }
+
+    /**
+     * Sanitize data : sanitize the incoming dat
+     * PDO object printing, according to database structure
+     * A routes can directs the data to the correct sanitation
+     *
+     * @param array $data : the data array
+     *
+     * @return string $data : return the sanitized data
+     */
+    public function sanitize($data)
+    {
+        // Page sanitation of data edited by the users
+        foreach ($data as $row) {
+                $row->title = strip_tags(htmlentities($row->title));
+                $row->data = strip_tags(htmlentities($row->data));
+        }
+
+        return $data;
     }
 
     /**
@@ -47,12 +71,14 @@ class CmsPrintModule implements CmsPrintModuleInterface
      */
     public function printPage($data)
     {
-        // var_dump($resArray);
-        // Create a table from the results
+        // Sanitize the data
+        $data = $this->sanitize($data);
+
+        // Create a html display
         $pageDisplay = "<div id= 'pDisp'>";
         foreach ($data as $row) {
-            $pageDisplay .= "<h2> {$row->title} </h2>";
-            $pageDisplay .= "<p>{$row->data}</p>";
+            $pageDisplay .= "<h2> $row->title </h2>";
+            $pageDisplay .= "<p> $row->data </p>";
         }
            $pageDisplay .= "</div>";
 
@@ -68,6 +94,9 @@ class CmsPrintModule implements CmsPrintModuleInterface
      */
     public function printBlog($data)
     {
+        // Sanitize the data
+        $data = $this->sanitize($data);
+
         // Create a table from the results
         $table = "<table class='tableStyle1'>
                     <tr>
@@ -81,10 +110,12 @@ class CmsPrintModule implements CmsPrintModuleInterface
         foreach ($data as $row) {
 
             if ($row->deleted == null) {
+
                     $table .= " <tr> ";
-                    $table .= "<td>{$row->title}</td>";
-                    $table .= "<td>{$row->data}</td>";
-                    $table .= "<td>{$row->published}</td>";
+                    $table .= "<td>$row->title</td>";
+                    $table .= "<td>$row->data</td>";
+                    $table .= "<td>$row->published</td>";
+
                 if ($row->slug) {
                         $table .= "<td><a href='?route=full&&see=$row->slug'>
                          See full </a></td>";
@@ -106,6 +137,9 @@ class CmsPrintModule implements CmsPrintModuleInterface
      */
     public function printForm($data, $tableName)
     {
+        // Sanitize the data
+        $data = $this->sanitize($data);
+
         // Create a form from the results
         $form = "<form action='?route=form&&sub=$tableName' method='post'>";
         foreach ($data as $row) {
@@ -114,9 +148,12 @@ class CmsPrintModule implements CmsPrintModuleInterface
                 $form .= "<label for='title'>Title</label></br>";
                 $form .= "<input type='text' class='txtField1' id='title'
                 name='title' value='{$row->title}'></br>";
+                $form .= "<label for='title'>Path</label></br>";
+                $form .= "<input type='text' class='txtField1' id='path'
+                name='path' value='{$row->path}'></br>";
                 $form .= "<label for='data'>Data</label></br>";
-                $form .= "<textarea id='data' name='data' rows='5' cols='60'>
-                {$row->data}
+                $form .=
+                "<textarea id='data' name='data' rows='5' cols='60'>{$row->data}
                 </textarea>";
         }
             $form .= "<button name='update' class='btn1' type='submit
@@ -159,6 +196,9 @@ class CmsPrintModule implements CmsPrintModuleInterface
      */
     public function printBlogAdmin($data)
     {
+        // Sanitize the data
+        $data = $this->sanitize($data);
+
         // Create a table from the results
         $table = "<table class='tableStyle1'>
                     <tr>
