@@ -2,13 +2,14 @@
 
 // $navBarSub .= "<a href='?route=delete&&sub=blog&&id=$id'> Blog </a>";
 if ($choice) {
-    if($choice == 'blog') {
+    if ($choice == 'blog') {
 
         // Delete that id
         if ($id) {
 
             $content = "Are you sure?";
-            $content .= "<a href='?route=delete&&sub=blog&&id=$id&&confirm=yes'> Yes </a>";
+            $content .= "<a href='?route=delete&&sub=
+                    blog&&id=$id&&confirm=yes'> Yes </a>";
 
             // Avoid errors with confirming the delete
             if ($confirm) {

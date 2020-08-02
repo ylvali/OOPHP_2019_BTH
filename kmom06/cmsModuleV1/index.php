@@ -4,7 +4,6 @@
 *   Index page with $_GET nav menu & router
 *
 */
-
 namespace Ylva\PhpBase;
 
 // * Scripts *
@@ -14,7 +13,8 @@ require __DIR__ . "/vendor/autoload.php";
 // * Object instantiation *
 $db = new DbBase($host, $db, $user, $pass); // Basic db connection
 $dbCrud = new DbCrud($db); // SQL preparations for CRuD
-$printModule = new CmsPrintModule(); // The printer
+$txtFilter = new TheTextFilter(); // txtFilter
+$printModule = new CmsPrintModule($txtFilter); // The printer
 $cmsModule = new CmsModule($dbCrud, $printModule); // The cms module
 $sendVar = new SendVar(); // $_GET & $_POST variables
 $sessVar = new SessionVar(); // $_SESSION control

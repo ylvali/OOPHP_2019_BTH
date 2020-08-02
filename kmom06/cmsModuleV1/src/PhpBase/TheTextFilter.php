@@ -1,5 +1,5 @@
 <?php
-namespace Ylva\TheTextFilter;
+namespace Ylva\PhpBase;
 use \Michelf\Markdown;
 
 /**
@@ -12,7 +12,7 @@ use \Michelf\Markdown;
  * https://daringfireball.net/projects/markdown/
  *
  */
-class TheTextFilter
+class TheTextFilter implements TheTextFilterInterface
 {
     /**
      * @var array $filters Supported filters with method names of

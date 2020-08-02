@@ -11,7 +11,7 @@
  * @phpcs:disable PEAR.NamingConventions.ValidFunctionName.PrivateNoUnderscore"
  **/
 
-namespace Ylva\TheTextFilter;
+namespace Ylva\PhpBase;
 
 use PHPUnit\Framework\TestCase;
 
@@ -40,12 +40,13 @@ class TheTextFilterObjectTest extends TestCase
 
         $txtFilter = new TheTextFilter();
         $this
-        ->assertInstanceOf("\Ylva\TheTextFilter\TheTextFilter", $txtFilter);
+        ->assertInstanceOf("\Ylva\PhpBase\TheTextFilter", $txtFilter);
 
         // Testing all of the filters
         $txt = "#title bar \n https://test.com [b] yes [/b]";
         $filter = array('link','bbcode', 'markdown', 'nl2br');
         $parsed = $txtFilter->parse($txt, $filter);
+        var_dump($parsed);
 
         // Testing no filter
         $txt = "#title bar \n https://test.com [b] yes [/b]";

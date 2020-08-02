@@ -3,7 +3,7 @@ $navBarSub = "<a href='?route=admin&&sub=page'> Page </a>";
 $navBarSub .= "<a href='?route=admin&&sub=blog'> Blog </a>";
 
 if ($choice) {
-    if($choice == 'blog') {
+    if ($choice == 'blog') {
         // Display blog with edit / delete options
         $content = "<a href='?route=create&&sub=blog'> Create new </a>";
         $content .= 'blog admin';

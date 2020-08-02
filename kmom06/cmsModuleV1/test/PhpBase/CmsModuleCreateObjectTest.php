@@ -45,7 +45,9 @@ class  CmsModuleCreateObjectTest extends TestCase
         $this->assertInstanceOf("\Ylva\PhpBase\DbBase", $dbBase);
         $dbCrud = new DbCrud($dbBase);
         $this->assertInstanceOf("\Ylva\PhpBase\DbCrud", $dbCrud);
-        $printModule = new CmsPrintModule();
+        $txtFilter = new TheTextFilter();
+        $this->assertInstanceOf("\Ylva\PhpBase\TheTextFilter", $txtFilter);
+        $printModule = new CmsPrintModule($txtFilter);
         $this->assertInstanceOf("\Ylva\PhpBase\CmsPrintModule", $printModule);
         $cmsModule = new CmsModule($dbCrud, $printModule);
         $this->assertInstanceOf("\Ylva\PhpBase\CmsModule", $cmsModule);
@@ -86,7 +88,8 @@ class  CmsModuleCreateObjectTest extends TestCase
         $theBlogAdmin = $cmsModule->read($blogTable, $ref3);
 
         $ref4 = "theForm";
-        $theBlogAdmin = $cmsModule->read($blogTable, $ref4);
+        $theBlog = $cmsModule->read($blogTable, $ref4);
+        // var_dump($theBlog);
 
         $ref4 = "noPrint";
         $noPrint = $cmsModule->read($blogTable, $ref4);
@@ -128,6 +131,11 @@ class  CmsModuleCreateObjectTest extends TestCase
         $idTitle = 'test13';
         $res2 = $cmsModule->delete($blogTable, $column1, $idTitle);
 
+        // ** DELETE **
+        $column1 = 'title';
+        $idTitle = 'test14';
+        $res2 = $cmsModule->delete($blogTable, $column1, $idTitle);
+
         // The soft delete sets the deleted to a date
         $column1 = 'title';
         $idTitle = 'test12';
@@ -136,5 +144,11 @@ class  CmsModuleCreateObjectTest extends TestCase
         $column2 = 'title';
         $idTitle2 = 'test5';
         $res2 = $cmsModule->delete($pageTable, $column2, $idTitle2);
+
+        // Check if empty
+        $column = 'id';
+        $searchWord = 'noPost';
+        $res = $cmsModule->isEmpty($blogTable, $column, $searchWord, $exactWord = false);
+        $this->assertTrue($res);
     }
 }

@@ -247,10 +247,10 @@ class DbCrud implements DbCrudInterface
      *
      * @return boolean $res       : the result
      */
-    public function isEmpty($table, $column, $searchWord, $exactWord = false)
+    public function isEmpty($table, $column, $searchWord, $exactWord = true)
     {
         // Get the data
-        $res = $this->search($table, $column, $searchWord, $exactWord = false);
+        $res = $this->search($table, $column, $searchWord, $exactWord = true);
 
         // Check if it is empty
         $isEmpty = false;

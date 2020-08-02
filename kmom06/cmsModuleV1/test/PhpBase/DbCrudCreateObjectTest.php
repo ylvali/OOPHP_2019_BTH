@@ -126,5 +126,11 @@ class DbCrudCreateObjectTest extends TestCase
         $res = $dbCrud
         ->selectLimitOffset($table, $limit, $offset, $orderBy, $order);
         // var_dump($res);
+
+        // Check if empty
+        $column = 'id';
+        $searchWord = 'noPost';
+        $res = $dbCrud->isEmpty($table, $column, $searchWord, $exactWord = false);
+        $this->assertTrue($res);
     }
 }

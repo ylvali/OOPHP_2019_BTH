@@ -274,11 +274,10 @@ class CmsModule
      * @return boolean $res       : the result
      */
     public function isEmpty(
-        $table, $column, $searchWord, $exactWord = false
+        $table, $column, $searchWord, $exactWord = true
     ) {
-
             $res = $this->dbConnection->isEmpty(
-                $table, $column, $searchWord, $exactWord = false
+                $table, $column, $searchWord, $exactWord = true
             );
 
             return $res;

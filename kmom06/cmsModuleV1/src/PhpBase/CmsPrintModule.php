@@ -33,13 +33,22 @@ class CmsPrintModule implements CmsPrintModuleInterface
      * CmsModule enables printing Cms for a project
      * Project specific tailoring prints to the data
      * Sanitizes according to the database structure
+     * Prints texts with text filters
+     *
+     * @param object $txtFilter : text filters for printing
+     *
      */
+
+     private $txtFilters;
 
     /**
      * Constructor to initiate cms printer
+     *
+     * @param object $txtFilter : text filters for printing
      */
-    public function __construct()
+    public function __construct(TheTextFilterInterface $filters)
     {
+        $this->txtFilter = $filters;
     }
 
     /**
@@ -77,8 +86,13 @@ class CmsPrintModule implements CmsPrintModuleInterface
         // Create a html display
         $pageDisplay = "<div id= 'pDisp'>";
         foreach ($data as $row) {
+
+            // Filter data
+            $data = $this->txtFilter
+            ->parse($row->data, explode(",", $row->filter));
+
             $pageDisplay .= "<h2> $row->title </h2>";
-            $pageDisplay .= "<p> $row->data </p>";
+            $pageDisplay .= "$data";
         }
            $pageDisplay .= "</div>";
 
@@ -111,9 +125,16 @@ class CmsPrintModule implements CmsPrintModuleInterface
 
             if ($row->deleted == null) {
 
+                    var_dump($row->filter);
+
+                    // Filter data
+                    $data = $this->txtFilter
+                    ->parse($row->data, explode(",", $row->filter));
+
+                    // Create a data table
                     $table .= " <tr> ";
                     $table .= "<td>$row->title</td>";
-                    $table .= "<td>$row->data</td>";
+                    $table .= "<td>$data</td>";
                     $table .= "<td>$row->published</td>";
 
                 if ($row->slug) {
@@ -148,14 +169,34 @@ class CmsPrintModule implements CmsPrintModuleInterface
                 $form .= "<label for='title'>Title</label></br>";
                 $form .= "<input type='text' class='txtField1' id='title'
                 name='title' value='{$row->title}'></br>";
-                $form .= "<label for='title'>Path</label></br>";
-                $form .= "<input type='text' class='txtField1' id='path'
-                name='path' value='{$row->path}'></br>";
+                if (isset($row->path)) {
+                    $form .= "<label for='title'>Path</label></br>";
+                    $form .= "<input type='text' class='txtField1' id='path'
+                    name='path' value='{$row->path}'></br>";
+                } else {
+                    $form .= "<label for='title'>Path</label></br>";
+                    $form .= "<input type='text' class='txtField1' id='path'
+                    name='path' value=''></br>";
+                }
                 $form .= "<label for='data'>Data</label></br>";
                 $form .=
                 "<textarea id='data' name='data' rows='5' cols='60'>{$row->data}
-                </textarea>";
+                </textarea> <br/>";
         }
+            // Filters
+            $form .= "<label for='filers'>Filters</label></br>
+            <input type='checkbox' id='bbcode' name='bbcode' value='bbcode'>
+            <label for='bbcode'>bbcode</label></br>
+
+            <input type='checkbox' id='link' name='link' value='link'>
+            <label for='link'>link</label></br>
+
+            <input type='checkbox' id='markdown' name='markdown' value='markdown'>
+            <label for='markdown'>markdown</label></br>
+
+            <input type='checkbox' id='nl2br' name='nl2br' value='nl2br'>
+            <label for='nl2br'>nl2br</label></br>";
+
             $form .= "<button name='update' class='btn1' type='submit
             ' value='update'>update</button>";
             $form .= "</form>";
@@ -174,14 +215,34 @@ class CmsPrintModule implements CmsPrintModuleInterface
     {
         // Create a form from the results
         $form = "<form action='$formAction' method='post'>
+
                  <label for='title'>Title</label></br>
                  <input type='text' class='txtField1' id='title'
-                 name='title' value=''>
-                 <label for='data'>Data</label></br>
+                 name='title' value=''> <br/>
+
+                 <label for='title'>Path</label></br>
+                 <input type='text' class='txtField1' id='path'
+                 name='path' value=''> <br/>
+
+                 <label for='data'>Text</label></br>
                  <textarea id='data' name='data' rows='5' cols='60'>
-                 </textarea>
-                 <button name='update' class='btn1' type='submit
-                 'value='update'> Create </button>";
+                 </textarea><br/><br/>
+
+                 <label for='filers'>Filters</label></br>
+                 <input type='checkbox' id='bbcode' name='bbcode' value='bbcode'>
+                 <label for='bbcode'>bbcode</label></br>
+
+                 <input type='checkbox' id='link' name='link' value='link'>
+                 <label for='link'>link</label></br>
+
+                 <input type='checkbox' id='markdown' name='markdown' value='markdown'>
+                 <label for='markdown'>markdown</label></br>
+
+                 <input type='checkbox' id='nl2br' name='nl2br' value='nl2br'>
+                 <label for='nl2br'>nl2br</label></br>
+
+                 <button name='create' class='btn1' type='submit'
+                 value=''> Create </button>";
 
         return $form;
     }
@@ -203,7 +264,6 @@ class CmsPrintModule implements CmsPrintModuleInterface
         $table = "<table class='tableStyle1'>
                     <tr>
                         <th>Title </th>
-                        <th>Data </th>
                         <th>Published </th>
                         <th>Created </th>
                         <th>updated </th>
@@ -217,7 +277,7 @@ class CmsPrintModule implements CmsPrintModuleInterface
         foreach ($data as $row) {
                 $table .= " <tr> ";
                 $table .= "<td>{$row->title}</td>";
-                $table .= "<td>{$row->data}</td>";
+                // $table .= "<td>{$row->data}</td>";
                 $table .= "<td>{$row->published}</td>";
                 $table .= "<td>{$row->created}</td>";
                 $table .= "<td>{$row->updated}</td>";

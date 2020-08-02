@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 $navBarSub = "<a href='?route=content&&sub=page'> Page </a>";
 $navBarSub .= "<a href='?route=content&&sub=blog'> Blog </a>";
 if ($choice) {
 
-    if($choice == 'blog') {
+    if ($choice == 'blog') {
         $content = $cmsModule->read($choice, $choice);
 
         // The view
