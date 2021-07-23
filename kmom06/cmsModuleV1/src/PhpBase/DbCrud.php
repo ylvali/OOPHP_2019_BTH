@@ -5,13 +5,13 @@
  *  Database - create | read | update | delete
  *
  * @category DbConnection
- * @package  ProjectDb
+ * @package  PhpBase
  * @author   Ylva Sjölin <yso@spektatum.com>
  * @license  free to use
  * @link     none
  **/
 
-namespace Ylva\ProductDb;
+namespace Ylva\PhpBase;
 use PDO;
 use Exception;
 
@@ -26,7 +26,7 @@ use Exception;
  * To be updated with more security like htmlentities?
  *
  * @category DbConnection
- * @package  ProjectDb
+ * @package  PhpBase
  * @author   Ylva Sjölin <yso@spektatum.com>
  * @license  free to use
  * @link     none
@@ -144,8 +144,10 @@ class DbCrud implements DbCrudInterface
      * an associative array & identifying variable and value
      * array = (columnName => newValue)
      *
+     * UPDATE $table SET $key = ? WHERE $identifyingVar = '$identifyingValue';
+     *
      * @param string $table            : which table to use
-     * @param array $params            : (columnName => newValue)
+     * @param string $params           : (columnName => newValue)
      * @param string $identifyingVar   : identifying variable
      * @param string $identifyingValue : identifying value
      *
@@ -198,19 +200,32 @@ class DbCrud implements DbCrudInterface
 
     /**
      * The search
-     * Method for searching in database
+     * Method for searching in database, value included
      *
-     * @param string $table      : which table to use
-     * @param string $column     : which column to use
-     * @param string $searchWord : which searched word
+     * @param string  $table      : which table to use
+     * @param string  $column     : which column to use
+     * @param string  $searchWord : which searched word
+     * @param boolean $exactWord  : set to true when searching an exact word
+     *                            and not just %included%
      *
      * @return string $res : the result
      */
-    public function search($table, $column, $searchWord)
+    public function search($table, $column, $searchWord, $exactWord = false)
     {
         // Set the sql
         $sql = "SELECT * FROM $table WHERE $column LIKE ?";
-        $searchWord = "%$searchWord%";
+
+        // Variations of search - exact word, or word included (default)
+        switch ($exactWord) {
+        case true:
+            $searchWord = "$searchWord";
+            break;
+
+        default:
+            $searchWord = "%$searchWord%";
+            break;
+        }
+
         $param = [$searchWord];
 
         // Get the data
@@ -218,6 +233,58 @@ class DbCrud implements DbCrudInterface
 
         return $res;
     }
+
+
+    /**
+     * The IsEmpty
+     * Method for checking if a table space is empty, from a search
+     *
+     * @param string  $table      : which table to use
+     * @param string  $column     : which column to use
+     * @param string  $searchWord : which searched word
+     * @param boolean $exactWord  : set to true when searching an exact word
+     *                            and not just %included%
+     *
+     * @return boolean $res       : the result
+     */
+    public function isEmpty($table, $column, $searchWord, $exactWord = true)
+    {
+        // Get the data
+        $res = $this->search($table, $column, $searchWord, $exactWord = true);
+
+        // Check if it is empty
+        $isEmpty = false;
+        if (empty($res)) {
+            $isEmpty = true;
+        }
+
+        return $isEmpty;
+    }
+
+
+
+    // /**
+    //  * The exact search
+    //  * Method for searching in database, exact value
+    //  *
+    //  * @param string $table      : which table to use
+    //  * @param string $column     : which column to use
+    //  * @param string $searchWord : which searched word
+    //  *
+    //  * @return string $res : the result
+    //  */
+    // public function searchExact($table, $column, $searchWord)
+    // {
+    //     // Set the sql
+    //     $sql = "SELECT * FROM $table WHERE $column LIKE ?";
+    //     // $searchWord = "%$searchWord%";
+    //     $param = [$searchWord];
+    //
+    //     // Get the data
+    //     $res = $this->dbConnection->getData($sql, $param);
+    //
+    //     return $res;
+    // }
 
 
     /**

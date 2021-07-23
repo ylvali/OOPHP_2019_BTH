@@ -1,0 +1,215 @@
+
+/* CSS by YSO */
+/* Standard outline */
+
+html {
+    /*background-size: 100% 100%;*/
+    background-attachment: fixed;
+    background-color: black;
+    background-image: url("../img/purpleYellowBgro.jpg");
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    font-family: 'Oxygen', serif;
+    font-size: 12;
+    letter-spacing: 0.1px;
+    line-height: 22;
+    overflow-y: scroll;
+}
+
+body {
+  width: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+.nav {
+    background-color: #000;
+    color: #746767;
+    height: 30px;
+    padding: 2.5%;
+    text-align: right;
+    width: 95%;
+    text-transform: uppercase;
+}
+
+.nav a{
+     text-decoration: none;
+     color: #cb8cbc;
+     letter-spacing: 0.6px;
+}
+
+.nav a:hover{
+     text-decoration: none;
+     color: #aa0683;
+     letter-spacing: 0.6px;
+}
+
+.cornerImg {
+   background-color: #00d1ff;
+   background-size: 100% 100%;
+   border-radius: 24px;
+   float: right;
+   height: 30px;
+   width: 30px;
+}
+
+.headerImg {
+    background-attachment: fixed;
+    background-color: #c21a63;
+    background-size: 100%;
+    height: 50px;
+    opacity: 0.9;
+    width: 100%;
+}
+
+.mainContent {
+    background-color: #ffffff;
+    margin-bottom: 80px;
+    min-height: 780px;
+    opacity: 0.9;
+    padding: 2.5%;
+    width: 95%;
+}
+
+.contentCenter {
+    background-color: #ffffff;
+    border-radius: 24px;
+    color: black;
+    margin: 0 auto;
+    min-height: 500px;
+    padding: 10px;
+    width: 70%;
+}
+
+.footer {
+    background-color: white;
+    color: #000;
+    height: 200px;
+    opacity: 0.9;
+    width: 95%;
+    padding: 2.5%;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.footer a {
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+}
+
+.footer a:hover {
+    text-decoration: none;
+    color: #503163;
+    padding: 5px;
+}
+
+
+/* Site specific */
+
+/* The table style */
+.tableStyle1 {
+    background-color: white;
+    color: black;
+    width: 100%;
+}
+
+.tableStyle1 img {
+    width: 80%;
+}
+
+.tableStyle1 td {
+   background-color: white;
+   border-bottom: solid;
+   border-color: #817d7d;
+   font-size: 0.8em;
+   height: 300px;
+   text-align: center;
+   text-transform: uppercase;
+}
+
+.tableStyle1 tr {
+    background-color: white;
+}
+
+.tableStyle1 th {
+    background-color: white;
+    border-bottom: solid;
+}
+
+
+/* The btns */
+.btn1 {
+   background-color: #fff;
+   border-radius: 10px;
+   border-style: none;
+   cursor: pointer;
+   letter-spacing: 0.9px;
+   margin: 3px;
+   padding: 10px;
+   font-size: 1.2em;
+}
+
+.btn1:hover {
+    background-color: #393434;
+    color: white;
+}
+
+.btn1Selected {
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+    cursor: pointer;
+    letter-spacing: 0.9px;
+    margin: 3px;
+    padding: 10px;
+}
+
+/* Btn panel */
+.btnPanel {
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* The txt fields */
+.txtField1 {
+    background-color: #2b2828;
+    border-radius: 10px;
+    border-style: none;
+    color: white;
+    height: 30px;
+    margin: 5px;
+}
+
+/* submenu */
+
+#titleBar {
+    width: 100%;
+    max-width: 150px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;;
+}
+
+#titleBar a {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    color: #000;
+    border-bottom: solid black;
+}
+
+#titleBar a:hover {
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    color: #8a888c;
+    border-bottom: solid #7e6c86;
