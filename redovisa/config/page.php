@@ -50,7 +50,7 @@ return [
             "template" => "anax/v2/header/site_logo_text",
             "data" => [
                 "homeLink"      => "",
-                "siteLogoText"  => "oophp : ylvas",
+                "siteLogoText"  => "oophp : yso",
                 "siteLogoTextIcon" => "image/cellyPicPart.png",
                 "siteLogoTextIconAlt" => "CellySomething",
             ],

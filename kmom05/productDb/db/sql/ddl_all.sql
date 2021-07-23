@@ -18,7 +18,7 @@ CREATE TABLE products
 (
     id CHAR(10),
     name CHAR(20),
-    pic CHAR(20),
+    pic CHAR(50),
     year INT(4),
 
     PRIMARY KEY (id)

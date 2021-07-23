@@ -13,8 +13,11 @@
  *
  */
 return [
-    "dsn"              => "mysql:host=127.0.0.1;dbname=oophp",
+    // "dsn"              => "mysql:host=blu-ray.student.bth.se:3306;dbname=ylsj11",
+    "dsn"              => "mysql:localhost;dbname=oophp",
+    // "username"         => 'ylsj11',
     "username"         => 'user',
+    // "password"         => 'c3wARF3zGpfX',
     "password"         => 'pass',
     "driver_options"   => null,
     "fetch_mode"       => \PDO::FETCH_OBJ,

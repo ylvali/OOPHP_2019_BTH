@@ -1,4 +1,9 @@
 <?php
+/**
+*
+*  php version 7
+*
+*/
 namespace Ylva\Guess;
 
 require __DIR__ . "/../config/config.php";

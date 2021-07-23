@@ -20,8 +20,12 @@ $app->router->add("productDb/start", function () use ($app) {
     *   Db config
     *
     */
-    $host = '127.0.0.1';
+    // $host = 'blu-ray.student.bth.se:3306';
+    $host = 'localhost';
+    // $db = 'ylsj11';
     $db = 'oophp';
+    // $user = 'ylsj11';
+    // $pass = 'c3wARF3zGpfX';
     $user = 'user';
     $pass = 'pass';
     $test = null; // testing mode off
@@ -205,10 +209,10 @@ $app->router->add("productDb/edit", function () use ($app) {
     *   Db config
     *
     */
-    $host = '127.0.0.1';
-    $db = 'oophp';
-    $user = 'user';
-    $pass = 'pass';
+    $host = 'blu-ray.student.bth.se:3306';
+    $db = 'ylsj11';
+    $user = 'ylsj11';
+    $pass = 'c3wARF3zGpfX';
 
     // Anax
     $anaxPlugin = true; // anax framework plugin
@@ -273,10 +277,10 @@ $app->router->add("productDb/add", function () use ($app) {
     *   Db config
     *
     */
-    $host = '127.0.0.1';
-    $db = 'oophp';
-    $user = 'user';
-    $pass = 'pass';
+    $host = 'blu-ray.student.bth.se:3306';
+    $db = 'ylsj11';
+    $user = 'ylsj11';
+    $pass = 'c3wARF3zGpfX';
 
     // Anax
     $anaxPlugin = true; // anax framework plugin
