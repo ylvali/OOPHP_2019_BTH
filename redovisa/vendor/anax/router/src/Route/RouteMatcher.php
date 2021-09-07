@@ -176,12 +176,12 @@ class RouteMatcher
      * @return boolean true if query matches the route
      */
     public function match(
-        string $mount = null,
-        string $relativePath = null,
-        string $absolutePath = null,
-        string $query,
-        array $methodSupported = null,
-        string $method = null
+        ?string $mount,
+        ?string $relativePath,
+        ?string $absolutePath,
+        ?string $query,
+        ?array $methodSupported,
+        ?string $method
     ) {
         $this->arguments = [];
         $this->methodMatched = null;
@@ -193,9 +193,23 @@ class RouteMatcher
 
         // Is a null path  - mounted on empty, or mount path matches
         // initial query.
+        $charsToMatch = strlen($mount);
+        $matchedQueryToMountPath = strncmp($query, $mount, $charsToMatch) === 0 ? true : false;
+        $nextChar = substr($query, $charsToMatch, 1);
         if (is_null($relativePath)
-            && (empty($mount) || strncmp($query, $mount, strlen($mount)) == 0)
+            && (
+                empty($mount)
+                || (
+                    $matchedQueryToMountPath && ($nextChar === "/" || $nextChar === "")
+                )
+            )
         ) {
+            $matchedChars = strlen($mount);
+            $nextChar = substr($query, $matchedChars, 1);
+            //var_dump($nextChar);
+            // echo "TRUE";
+            //echo "\nMATCHED: $query '$nextChar' == $mount (" . strlen($mount) . ")";
+
             $this->methodMatched = $method;
             $this->pathMatched = $query;
             return true;

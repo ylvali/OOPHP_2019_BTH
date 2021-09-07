@@ -20,14 +20,14 @@ $app->router->add("productDb/start", function () use ($app) {
     *   Db config
     *
     */
-    // $host = 'blu-ray.student.bth.se:3306';
-    $host = 'localhost';
-    // $db = 'ylsj11';
-    $db = 'oophp';
-    // $user = 'ylsj11';
-    // $pass = 'c3wARF3zGpfX';
-    $user = 'user';
-    $pass = 'pass';
+    $host = 'blu-ray.student.bth.se:3306';
+    // $host = 'localhost';
+    $db = 'ylsj11';
+    // $db = 'oophp';
+    $user = 'ylsj11';
+    $pass = 'c3wARF3zGpfX';
+    // $user = 'user';
+    // $pass = 'pass';
     $test = null; // testing mode off
     $anaxPlugin = true; // anax framework plugin
     $anaxApp = $app; // anax app object, framework plugin
@@ -132,11 +132,14 @@ $app->router->add("productDb/start", function () use ($app) {
     function getSelected($sendObj)
     {
         $choices = array('add', 'reset', 'search', 'edit', 'delete');
-        $selected = null;
+        $selected=[];
+        $selected[0] = '';
         foreach ($choices as $choice) {
-            $theValue = $sendObj->postValue($choice);
-            if ($theValue) {
-                $selected = array($choice, $theValue);
+            if ($sendObj->postValue($choice) !== null) {
+                $theValue = $sendObj->postValue($choice);
+                if ($theValue) {
+                      $selected = array($choice, $theValue);
+                }
             }
         }
         return $selected;
@@ -144,12 +147,16 @@ $app->router->add("productDb/start", function () use ($app) {
 
     // Get value from button click if any
     $option = getSelected($sendVar);
-    // var_dump($option);
 
     // Case switch displaying correct data
     $pageLink = '';
     $res = '';
-    switch ($option[0]) {
+    try {
+        $option = isset($option[0])? $option[0] : null;
+    } catch (\Exception $e) {
+        $option = '';
+    }
+    switch ($option) {
         case "add":
             include('proDb/add.php');
             break;

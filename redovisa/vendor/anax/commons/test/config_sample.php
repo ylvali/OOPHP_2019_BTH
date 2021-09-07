@@ -4,7 +4,6 @@
  * Sample configuration file for Anax webroot.
  */
 
-
 /**
  * Define essential Anax paths, end with /
  */

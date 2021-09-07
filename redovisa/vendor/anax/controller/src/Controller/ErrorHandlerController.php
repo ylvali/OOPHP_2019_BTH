@@ -27,18 +27,17 @@ class ErrorHandlerController implements ContainerInjectableInterface
      */
     public function catchAll(...$args) : object
     {
-        $title = " | Anax";
         $pages = [
             "403" => [
-                "Anax 403: Forbidden",
+                "403: Forbidden",
                 "You are not permitted to do this."
             ],
             "404" => [
-                "Anax 404: Not Found",
+                "404: Not Found",
                 "The page you are looking for is not here."
             ],
             "500" => [
-                "Anax 500: Internal Server Error",
+                "500: Internal Server Error",
                 "An unexpected condition was encountered."
             ],
         ];
@@ -58,7 +57,7 @@ class ErrorHandlerController implements ContainerInjectableInterface
         );
 
         return $page->render([
-            "title" => $pages[$path][0] . $title
+            "title" => $pages[$path][0]
         ], $path);
     }
 }

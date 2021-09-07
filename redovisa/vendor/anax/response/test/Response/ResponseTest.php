@@ -75,6 +75,23 @@ class ResponseTest extends TestCase
 
 
     /**
+     * Add headers and get them again.
+     */
+    public function testAddGetHeaders()
+    {
+        $resp = new Response();
+
+        $res = $resp->addHeader("HEADER");
+        $this->assertEquals($resp, $res);
+
+        $res = $resp->getHeaders();
+        $this->assertIsArray($res);
+        $this->assertContains("HEADER", $res);
+    }
+
+
+
+    /**
      * Add string to body.
      */
     public function testSetBodyAsString()

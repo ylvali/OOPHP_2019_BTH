@@ -14,7 +14,7 @@ Anax Navigation
 [![Maintainability](https://api.codeclimate.com/v1/badges/34aa545900e6f847008a/maintainability)](https://codeclimate.com/github/canax/navigation/maintainability)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dbcd686d6f27475f82b04cab145065a8)](https://www.codacy.com/app/mosbth/navigation?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=canax/navigation&amp;utm_campaign=Badge_Grade)
 
-A navigation module for menus, navbars and navigation.
+A navigation module for menus, navbars and navigation. It creates html code for a menu with submenus from a configuration array.
 
 
 
@@ -34,5 +34,5 @@ This software carries a MIT license. See [LICENSE.txt](LICENSE.txt) for details.
 
 ```
  .  
-..:  Copyright (c) 2013 - 2019 Mikael Roos, mos@dbwebb.se
+..:  Copyright (c) 2013 - 2020 Mikael Roos, mos@dbwebb.se
 ```

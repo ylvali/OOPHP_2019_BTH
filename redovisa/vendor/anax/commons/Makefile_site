@@ -92,7 +92,7 @@ ROBOTSTXT	 	:= robots.txt
 SSL_PEM_BASE 	= /etc/letsencrypt/live/$(WWW_SITE)
 
 # Publish
-EXCLUDE_ON_PUBLISH = --exclude old --exclude backup --exclude .git --exclude .solution --exclude .solutions --exclude error.log --exclude cache --exclude access.log --delete
+EXCLUDE_ON_PUBLISH = --exclude old --exclude backup --exclude .git --exclude .solution --exclude .solutions --exclude error.log --exclude ./cache --exclude access.log --delete
 
 
 
@@ -169,7 +169,7 @@ install: prepare install-production install-tools-php install-tools-bash
 
 # target: install-production      - Install tools needed for production
 .PHONY:  install-production
-install-production: 
+install-production:
 	@$(call HELPTEXT,$@)
 	[ ! -f composer.json ] || composer --no-dev install
 
@@ -276,7 +276,8 @@ install-tools-php:
 
 	curl -Lso $(PHPCBF) https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar && chmod 755 $(PHPCBF)
 
-	curl -Lso $(PHPMD) http://static.phpmd.org/php/latest/phpmd.phar && chmod 755 $(PHPMD)
+	# phpmd
+	curl -Lso $(PHPMD) https://github.com/phpmd/phpmd/releases/download/2.8.1/phpmd.phar && chmod 755 $(PHPMD)
 
 	curl -Lso $(PHPLOC) https://phar.phpunit.de/phploc.phar && chmod 755 $(PHPLOC)
 
@@ -502,6 +503,11 @@ site-build:
 	# Create the local htdocs directory
 	install -d $(LOCAL_HTDOCS)/log
 
+	# Create the htdocs cache directory
+	install -m 0777 -d $(LOCAL_HTDOCS)/cache
+	install -m 0777 -d $(LOCAL_HTDOCS)/cache/anax
+	install -m 0777 -d $(LOCAL_HTDOCS)/cache/cimage
+
 # Create and sync cache
 #bash -c "install -d -m 777 cache/{cimage,anax,forum,forum-files}"
 #rsync -av cache $(LOCAL_HTDOCS)
@@ -517,7 +523,7 @@ site-build:
 .PHONY: local-publish
 local-publish:
 	@$(call HELPTEXT,$@)
-	rsync -av $(EXCLUDE_ON_PUBLISH) config content htdocs vendor $(LOCAL_HTDOCS)
+	rsync -av $(EXCLUDE_ON_PUBLISH) config content data htdocs src view vendor $(LOCAL_HTDOCS)
 
 	@# Enable robots if available
 	[ ! -f $(ROBOTSTXT) ] || cp $(ROBOTSTXT) "$(LOCAL_HTDOCS)/htdocs/robots.txt"

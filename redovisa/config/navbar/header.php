@@ -88,5 +88,10 @@ return [
             "url" => "productDb",
             "title" => "productDb",
         ],
+        [
+            "text" => "Cms",
+            "url" => "cms",
+            "title" => "cms",
+        ],
     ],
 ];

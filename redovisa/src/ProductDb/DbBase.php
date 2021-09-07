@@ -15,6 +15,7 @@ namespace Anax\ProductDb;
 
 use PDO;
 use Exception;
+use PDOException;
 
 // More info on set up
 // https://dbwebb.se/kunskap/kom-igang-med-php-pdo-och-mysql-v2

@@ -5,6 +5,11 @@ filter:
     excluded_paths: [vendor/*, test/*]
 
 build:
+    nodes:
+        my-tests:
+            environment:
+                php:
+                    version: 7.4
 
     # dependencies:
     #     before:

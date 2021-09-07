@@ -54,7 +54,7 @@ The following classes, interfaces and traits exists.
 Exceptions
 ------------------
 
-There are no module specific exceptions.
+Module specific exceptions are thrown through `Anax\Request\Exception`.
 
 
 
@@ -196,10 +196,13 @@ You can get and set values in the PHP global variable `$_SERVER`.
 
 ```php
 # Read a value
-$request->getServer($key);
+$value = $request->getServer($key);
+
+# Read all values as an key value array
+$array = $request->getServer();
 
 # Read a value and use $default if $key is not set.
-$request->getServer($key, $default);
+$value = $request->getServer($key, $default);
 
 # Set a value
 $request->setServer($key, $value);
@@ -216,10 +219,13 @@ You can get and set values in the PHP global variable `$_GET`.
 
 ```php
 # Read a value
-$request->getGet($key);
+$value = $request->getGet($key);
+
+# Read all values as an key value array
+$array = $request->getGet();
 
 # Read a value and use $default if $key is not set.
-$request->getGet($key, $default);
+$value = $request->getGet($key, $default);
 
 # Set a value
 $request->setGet($key, $value);
@@ -236,10 +242,13 @@ You can get and set values in the PHP global variable `$_POST`.
 
 ```php
 # Read a value
-$request->getPost($key);
+$value = $request->getPost($key);
+
+# Read all values as an key value array
+$array = $request->getGet();
 
 # Read a value and use $default if $key is not set.
-$request->getPost($key, $default);
+$value = $request->getPost($key, $default);
 
 # Set a value
 $request->setPost($key, $value);
@@ -258,6 +267,9 @@ You can get and set the value in the HTTP request body. Sometimes the HTTP reque
 # Read the body
 $request->getBody();
 
+# Read the body and treat it as json
+$request->getBodyAsJson()
+
 # Set the body
 $request->setBody($content);
 ```
@@ -275,5 +287,5 @@ This software carries a MIT license. See [LICENSE.txt](LICENSE.txt) for details.
 
 ```
  .  
-..:  Copyright (c) 2013 - 2019 Mikael Roos, mos@dbwebb.se
+..:  Copyright (c) 2013 - 2020 Mikael Roos, mos@dbwebb.se
 ```

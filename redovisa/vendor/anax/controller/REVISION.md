@@ -3,6 +3,13 @@ Revision history
 
 
 
+v2.0.2 (2020-05-15)
+---------------------------------
+
+* Make ErrorController more generic and avoid using Anax in text.
+
+
+
 v2.0.1 (2019-04-24)
 ---------------------------------
 

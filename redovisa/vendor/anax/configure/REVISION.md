@@ -1,6 +1,31 @@
 Revision history
 =================================
 
+@TODO
+
+* Remove old interface and traits.
+* Create new trait/interface for model-classes reading their own configuration file.
+* Rewrite README and document on anax website.
+
+
+
+v2.0.1 (2020-11-19)
+---------------------------------
+
+* Fix support for loading configfiles like 'view.php' with extension.
+
+
+
+v2.0.0 (2020-11-19)
+---------------------------------
+
+* Rewrite how the configuration files are loaded.
+* Allow empty base dirs.
+* Add to save the latest loaded configuration.
+* Add method getConfig($key, $default).
+* Add phpstan badge.
+
+
 
 v2.0.0-beta.1 (2018-08-15)
 ---------------------------------

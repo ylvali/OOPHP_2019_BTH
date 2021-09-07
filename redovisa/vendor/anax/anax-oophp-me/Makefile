@@ -30,7 +30,7 @@ WARN_COLOR	= \033[33;01m
 ACTION_MESSAGE = $(ECHO) "$(ACTION)---> $(1)$(NO_COLOR)"
 
 # Which makefile am I in?
-WHERE-AM-I = $(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
+WHERE-AM-I = "$(CURDIR)/$(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))"
 THIS_MAKEFILE := $(call WHERE-AM-I)
 
 # Echo some nice helptext based on the target comment
@@ -255,7 +255,8 @@ install-tools-php:
 
 	curl -Lso $(PHPCBF) https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar && chmod 755 $(PHPCBF)
 
-	curl -Lso $(PHPMD) http://static.phpmd.org/php/latest/phpmd.phar && chmod 755 $(PHPMD)
+	curl -Lso $(PHPMD) https://github.com/phpmd/phpmd/releases/download/2.7.0/phpmd.phar && chmod 755 $(PHPMD)
+	# curl -Lso $(PHPMD) http://static.phpmd.org/php/latest/phpmd.phar && chmod 755 $(PHPMD)
 	# curl -Lso $(PHPMD) http://www.student.bth.se/~mosstud/download/phpmd.phar && chmod 755 $(PHPMD)
 
 	curl -Lso $(PHPLOC) https://phar.phpunit.de/phploc.phar && chmod 755 $(PHPLOC)
@@ -361,7 +362,7 @@ behat:
 install-tools-bash:
 	@$(call HELPTEXT,$@)
 	# Shellcheck
-	curl -s https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz | tar -xJ -C build/ && rm -f .bin/shellcheck && ln build/shellcheck-latest/shellcheck .bin/
+	curl -Ls https://github.com/koalaman/shellcheck/releases/download/latest/shellcheck-latest.linux.x86_64.tar.xz | tar -xJ -C build/ && rm -f .bin/shellcheck && ln build/shellcheck-latest/shellcheck .bin/
 
 	# Bats
 	curl -Lso $(BIN)/bats-exec-suite https://raw.githubusercontent.com/sstephenson/bats/master/libexec/bats-exec-suite
@@ -419,7 +420,7 @@ scaff-reinstall:
 theme:
 	@$(call HELPTEXT,$@)
 	[ ! -d theme ] || $(MAKE) --directory=theme build
-	rsync -a theme/htdocs/css htdocs/
+	rsync -a theme/build/less/css htdocs/
 
 
 
@@ -427,7 +428,7 @@ theme:
 # #
 # # Cimage
 # #
-# 
+#
 # define CIMAGE_CONFIG
 # <?php
 # return [
@@ -438,7 +439,7 @@ theme:
 # ];
 # endef
 # export CIMAGE_CONFIG
-# 
+#
 # define GIT_IGNORE_FILES
 # # Ignore everything in this directory
 # *
@@ -446,7 +447,7 @@ theme:
 # !.gitignore
 # endef
 # export GIT_IGNORE_FILES
-# 
+#
 # # target: cimage-install          - Install Cimage in htdocs
 # .PHONY: cimage-install
 # cimage-install:
@@ -457,7 +458,7 @@ theme:
 # 	cp vendor/mos/cimage/webroot/img.php htdocs/cimage
 # 	cp vendor/mos/cimage/webroot/img/car.png htdocs/img/
 # 	touch htdocs/cimage/img_config.php
-# 
+#
 # # target: cimage-update           - Update Cimage to latest version.
 # .PHONY: cimage-update
 # cimage-update:
@@ -469,7 +470,7 @@ theme:
 # 	cp vendor/mos/cimage/webroot/img.php htdocs/cimage
 # 	cp vendor/mos/cimage/webroot/img/car.png htdocs/img/
 # 	touch htdocs/cimage/img_config.php
-# 
+#
 # # target: cimage-config-create    - Create configfile for Cimage.
 # .PHONY: cimage-config-create
 # cimage-config-create:

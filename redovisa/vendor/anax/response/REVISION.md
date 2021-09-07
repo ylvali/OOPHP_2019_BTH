@@ -3,6 +3,21 @@ Revision history
 
 
 
+v2.0.2 (2020-10-27)
+---------------------------------
+
+* Add method addFile to let user download a file.
+
+
+
+v2.0.1 (2019-11-13)
+---------------------------------
+
+* Add method getHeaders() for testability.
+* Update Makefile for phpmd installation.
+
+
+
 v2.0.0 (2019-04-05)
 ---------------------------------
 

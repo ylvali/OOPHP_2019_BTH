@@ -39,7 +39,7 @@ class Navbar
      */
     public function check($url)
     {
-        if ($url == $this->di->get("request")->getCurrentUrl(false)) {
+        if ($this->url($url) == $this->di->get("request")->getCurrentUrl(false)) {
             return true;
         }
     }
@@ -72,7 +72,7 @@ class Navbar
      * @SuppressWarnings(PHPMD.NPathComplexity)
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    public function createMenuWithSubMenus($config)
+    public function createMenuWithSubMenus(array $config): string
     {
         $default = [
             "id"      => null,

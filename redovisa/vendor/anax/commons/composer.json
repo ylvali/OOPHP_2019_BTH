@@ -15,7 +15,7 @@
         "source": "https://github.com/canax/commons"
     },
     "autoload": {
-        "psr-4": { 
+        "psr-4": {
             "Anax\\": "src/"
         },
         "files": [
@@ -27,6 +27,7 @@
     },
     "require-dev": {
         "anax/di": "^2.0.0@alpha",
-        "phpunit/phpunit": "^7"
+        "phpunit/phpunit": "^9",
+        "phpstan/phpstan": "^0.12"
     }
 }

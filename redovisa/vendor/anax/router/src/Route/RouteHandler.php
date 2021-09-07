@@ -31,8 +31,8 @@ class RouteHandler
      * @return mixed as the result from the route handler.
      */
     public function handle(
-        string $method = null,
-        string $path = null,
+        ?string $method,
+        ?string $path,
         $action,
         array $arguments = [],
         ContainerInterface $di = null
@@ -59,6 +59,11 @@ class RouteHandler
             if ($callable) {
                 return $this->handleAsControllerAction($callable);
             }
+
+            $isinvocable = $this->isInvocableClass($action);
+            if ($isinvocable) {
+                return $this->handleAsInvocableClass($action);
+            }
         }
 
         if ($di
@@ -70,7 +75,7 @@ class RouteHandler
             // Try to load service from app/di injected container
             return $this->handleUsingDi($action, $arguments, $di);
         }
-        
+
         throw new ConfigurationException("Handler for route does not seem to be a callable action.");
     }
 
@@ -120,6 +125,97 @@ class RouteHandler
 
 
     /**
+     * Check if action is a class with the magic method __invoke.
+     *
+     * @param string $action the proposed handler.
+     *
+     * @return boolean true if class has implemented __invoke, else false.
+     */
+    protected function isInvocableClass(string $action) : bool
+    {
+        $rc = new \ReflectionClass($action);
+        return $rc->hasMethod("__invoke");
+    }
+
+
+
+    /**
+     * Call the __invoke action with optional arguments and call
+     * initialisation methods if available.
+     *
+     * @param string $class as class that implements __invokable.
+     *
+     * @return mixed result from the handler.
+     */
+    protected function handleAsInvocableClass(string $class)
+    {
+        $obj = new $class();
+        // $class = $callable[0];
+        $action = "__invoke";
+        // $args = $callable[2];
+
+        $refl = new \ReflectionClass($class);
+        $diInterface = "Anax\Commons\ContainerInjectableInterface";
+        $appInterface = "Anax\Commons\AppInjectableInterface";
+
+        if ($this->di && $refl->implementsInterface($diInterface)) {
+            $obj->setDI($this->di);
+        } elseif ($this->di && $refl->implementsInterface($appInterface)) {
+            if (!$this->di->has("app")) {
+                throw new ConfigurationException(
+                    "Controller '$class' implements AppInjectableInterface but \$app is not available in \$di."
+                );
+            }
+            $obj->setApp($this->di->get("app"));
+        }
+
+        try {
+            $refl = new \ReflectionMethod($class, "initialize");
+            if ($refl->isPublic()) {
+                $res = $obj->initialize();
+                if (!is_null($res)) {
+                    return $res;
+                }
+            }
+        } catch (\ReflectionException $e) {
+            ;
+        }
+
+        $refl = new \ReflectionMethod($obj, $action);
+        $paramIsVariadic = false;
+        foreach ($refl->getParameters() as $param) {
+            if ($param->isVariadic()) {
+                $paramIsVariadic = true;
+                break;
+            }
+        }
+
+        // if (!$paramIsVariadic
+        //     && $refl->getNumberOfParameters() < count($args)
+        // ) {
+        //     throw new NotFoundException(
+        //         "Controller '$class' with action method '$action' valid but to many parameters. Got "
+        //         . count($args)
+        //         . ", expected "
+        //         . $refl->getNumberOfParameters() . "."
+        //     );
+        // }
+
+        try {
+            //$res = $obj(...$args);
+            $res = $obj();
+        } catch (\ArgumentCountError $e) {
+            throw new NotFoundException($e->getMessage());
+        } catch (\TypeError $e) {
+            throw new NotFoundException($e->getMessage());
+        }
+
+        return $res;
+    }
+
+
+
+    /**
      * Check if items can be used to call a controller action, verify
      * that the controller exists, the action has a class-method to call.
      *
@@ -131,8 +227,8 @@ class RouteHandler
      * @return array with callable details.
      */
     protected function isControllerAction(
-        string $method = null,
-        string $path = null,
+        ?string $method,
+        ?string $path,
         string $class
     ) {
         $method = ucfirst(strtolower($method));
@@ -210,7 +306,10 @@ class RouteHandler
         try {
             $refl = new \ReflectionMethod($class, "initialize");
             if ($refl->isPublic()) {
-                $obj->initialize();
+                $res = $obj->initialize();
+                if (!is_null($res)) {
+                    return $res;
+                }
             }
         } catch (\ReflectionException $e) {
             ;
@@ -308,14 +407,14 @@ class RouteHandler
         if (!$di->has($action[0])) {
             throw new ConfigurationException("Routehandler '{$action[0]}' not loaded in di.");
         }
-    
+
         $service = $di->get($action[0]);
         if (!is_callable([$service, $action[1]])) {
             throw new ConfigurationException(
                 "Routehandler '{$action[0]}' does not have a callable method '{$action[1]}'."
             );
         }
-    
+
         return call_user_func(
             [$service, $action[1]],
             ...$arguments

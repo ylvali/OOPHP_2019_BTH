@@ -3,6 +3,13 @@ Revision history
 
 
 
+v2.3.1 (2020-10-23)
+---------------------------------
+
+* Update README and some comments about how to create the sqlite dsn.
+
+
+
 v2.3.0 (2020-05-06)
 ---------------------------------
 

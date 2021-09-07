@@ -3,6 +3,112 @@ Revision history
 
 
 
+v2.0.14 (2020-11-02)
+---------------------------------
+
+* Makefile do publish cache-related files.
+
+
+
+v2.0.13 (2020-11-02)
+---------------------------------
+
+* Update Makefile for site.
+
+
+
+v2.0.12 (2020-10-23)
+---------------------------------
+
+* Update port for docker website to avoid port being occupied.
+* Add config/apache with config files for apache within docker.
+* Add config for docker with apache.
+
+
+
+v2.0.11 (2020-10-22)
+---------------------------------
+
+* Add configuration file for docker apache in config/docker.
+
+
+
+v2.0.10 (2020-05-26)
+---------------------------------
+
+* Update docker-compose for site.
+
+
+
+v2.0.9 (2020-05-05)
+---------------------------------
+
+* Add phpstan composer.json
+* Add make test-anax to test all anax modules in vendor/anax.
+
+
+
+v2.0.8 (2020-04-29)
+---------------------------------
+
+* Add phpstan to make test
+* Scrutinizer run tests on php 7.4
+* Travis run tests on php 7.3, 7.4
+* Upgrade phpunit to v9.
+* Upgrade phpcs to PSR-12.
+
+
+
+v2.0.7 (2020-04-29)
+---------------------------------
+
+* Makefile install shellcheck only on Linux/Darwin.
+* Add phpstan as development tool.
+* Add phpdox as development tool.
+
+
+
+v2.0.6 (2020-04-23)
+---------------------------------
+
+* Makefile fix that shellcheck is to be installed in .bin.
+* Makefile upgrade phpmd to 2.8.1.
+* Makefile clean up old commented sections.
+* Makefile upgrade phpdoc to v3.0.0-rc.
+* Fix phpmd validation in functions.php.
+
+
+
+v2.0.5 (2020-04-03)
+---------------------------------
+
+* Update Makefile with installation link for shellcheck.
+
+
+
+v2.0.4 (2020-04-03)
+---------------------------------
+
+* Update Makefile with make theme to copy files from theme/.
+
+
+
+v2.0.3 (2019-11-21)
+---------------------------------
+
+* Fix helptext in Makefile to work in dir structure with space and åäö
+* Remove cimage targets from Makefile.
+* Update target theme i Makefile, to get files from build dir.
+
+
+
+v2.0.2 (2019-11-01)
+---------------------------------
+
+* Update Makefile to latest version (phpmd installation).
+
+
+
 v2.0.1 (2019-04-24)
 ---------------------------------
 

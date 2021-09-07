@@ -9,7 +9,7 @@ class MockContainerInjectable implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
-    public function getDI() : object
+    public function getDI(): object
     {
         return $this->di;
     }

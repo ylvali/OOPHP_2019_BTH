@@ -1,4 +1,7 @@
 <?php
+
+use Anax\Url\Url;
+
 /**
  * Config file for url.
  */
@@ -9,6 +12,6 @@ return [
     //"staticSiteUrl" => null,
     //"staticBaseUrl" => null,
     //"scriptName"    => null,
-    //"urlType"       => \Anax\Url\Url::URL_CLEAN,
-    "urlType"       => \Anax\Url\Url::URL_APPEND,
+    //"urlType"       => Url::URL_CLEAN,
+    "urlType"       => Url::URL_APPEND,
 ];

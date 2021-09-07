@@ -56,5 +56,13 @@ body {
 }
 
 .site-logo {
-  max-width: 200px;
+   max-width: 200px;
+}
+
+.site-logo img {
+   border-radius: 240px;
+}
+
+.region-flash {
+  display: none;
 }

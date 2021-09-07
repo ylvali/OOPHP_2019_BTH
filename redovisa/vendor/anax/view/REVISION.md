@@ -3,6 +3,115 @@ Revision history
 
 
 
+v2.0.18 (2021-01-07)
+---------------------------------
+
+* Improved template image/background.php.
+* Improved template layout/anax.php.
+
+
+
+v2.0.17 (2020-12-25)
+v2.0.16 (2020-12-25)
+v2.0.15 (2020-12-25)
+---------------------------------
+
+* Add template image/background.php to display a background image.
+
+
+
+v2.0.14 (2020-12-25)
+---------------------------------
+
+* Add region flash to the view layout/anax.php.
+
+
+
+v2.0.13 (2020-11-10)
+---------------------------------
+
+* Add view layout/plain.php as a simple view only rendering region main.
+
+
+
+v2.0.12 (2020-10-27)
+---------------------------------
+
+* Add helper urlController() to allow for relative linking within current controller mountpoint.
+
+
+
+v2.0.11 (2020-05-27)
+---------------------------------
+
+* Enhance layout for pagespeed.
+
+
+
+v2.0.10 (2020-05-27)
+---------------------------------
+
+* Add layout with preconnect links.
+
+
+
+v2.0.9 (2020-05-15)
+---------------------------------
+
+* Update template file for error messages.
+
+
+
+v2.0.8 (2020-05-15)
+---------------------------------
+
+* Add template file for list of images.
+
+
+
+v2.0.7 (2020-05-15)
+---------------------------------
+
+* Add template file for google analytics.
+
+
+
+v2.0.6 (2020-05-08)
+---------------------------------
+
+* Remove flash-region from anax layout.
+
+
+
+v2.0.5 (2020-05-07)
+---------------------------------
+
+* Add default view for anax layout.
+
+
+
+v2.0.4 (2020-05-07)
+---------------------------------
+
+* Escape output in classList, avoid xss, fix dbwebb-se/website#92
+
+
+
+v2.0.3 (2020-03-31)
+---------------------------------
+
+* Fix notice in view next-previous/default.php due to PHP 7.4.
+
+
+
+v2.0.2 (2019-11-05)
+---------------------------------
+
+* Add views to render plain information in `plain/pre`.
+* Update Makefile from commons.
+
+
+
 v2.0.1 (2019-04-05)
 ---------------------------------
 

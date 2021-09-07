@@ -41,7 +41,7 @@ return [
             "template" => "anax/v2/header/site_logo",
             "data" => [
                 "class" => "large",
-                "siteLogo"      => "image/cellyPicPart.png",
+                "siteLogo"      => "img/cellyPicPart.png",
                 "siteLogoAlt"   => "CellySomething",
             ],
         ],
@@ -51,8 +51,8 @@ return [
             "data" => [
                 "homeLink"      => "",
                 "siteLogoText"  => "oophp : yso",
-                "siteLogoTextIcon" => "image/cellyPicPart.png",
-                "siteLogoTextIconAlt" => "CellySomething",
+                "siteLogoTextIcon" => "img/cellyPicPart.png",
+                "siteLogoTextIconAlt" => "PatternPlay",
             ],
         ],
         [

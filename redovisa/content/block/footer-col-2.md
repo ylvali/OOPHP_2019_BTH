@@ -1,3 +1,3 @@
 #### Metod
 
-Göra uppgifter & läsa in
+Skapa system

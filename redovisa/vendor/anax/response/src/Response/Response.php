@@ -8,13 +8,15 @@ namespace Anax\Response;
 class Response
 {
     /**
-    * @var array $headers    set all headers to send.
-    * @var array $statusCode set statuscode to use.
-    * @var array $body       body to send with response.
+    * @var array  $headers    set all headers to send.
+    * @var array  $statusCode set statuscode to use.
+    * @var string $body       body to send with response.
+    * @var string $filename   a filename to send for download.
     */
     private $headers = [];
     private $statusCode = null;
-    private $body;
+    private $body = null;
+    private $filename = null;
 
 
 
@@ -60,6 +62,18 @@ class Response
     {
         $this->headers[] = $header;
         return $this;
+    }
+
+
+
+    /**
+     * Get all headers.
+     *
+     * @return array with headers
+     */
+    public function getHeaders() : array
+    {
+        return $this->headers;
     }
 
 
@@ -127,6 +141,60 @@ class Response
 
 
     /**
+     * Send a file to be downloaded by the user.
+     *
+     * @param string $filename to the file to download.
+     *
+     * @return self
+     */
+    public function addFile(string $filename) : object
+    {
+        $this->filename = $filename;
+
+        // Get file type and set it as Content Type
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        header("Content-Type: " . finfo_file($finfo, $filename));
+        finfo_close($finfo);
+
+        // Use Content-Disposition: attachment to specify the filename
+        $this->addHeader("Content-Disposition: attachment; filename="
+            . basename($filename));
+
+        // No cache
+        $this->addHeader("Expires: 0");
+        $this->addHeader("Cache-Control: must-revalidate");
+        $this->addHeader("Pragma: public");
+
+        // Define file size
+        $this->addHeader("Content-Length: "
+            . filesize($filename));
+
+        return $this;
+    }
+
+
+
+    /**
+     * Send a file to be downloaded by the user.
+     *
+     * @param string $filename to the file to download.
+     *
+     * @return self
+     */
+    public function sendFile() : object
+    {
+        ob_clean();
+        flush();
+        if ($this->filename && is_readable($this->filename)) {
+            readfile($this->filename);
+        }
+
+        return $this;
+    }
+
+
+
+    /**
      * Send response supporting several ways of receiving response $data.
      *
      * @param mixed $data to use as optional base for creating response.
@@ -159,7 +227,14 @@ class Response
             $this->sendHeaders();
         }
 
-        echo $this->getBody();
+        if ($this->body) {
+            echo $this->getBody();
+        }
+
+        if ($this->filename) {
+            $this->sendFile();
+        }
+
         return $this;
     }
 

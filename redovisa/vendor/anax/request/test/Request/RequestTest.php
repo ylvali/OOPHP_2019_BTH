@@ -2,10 +2,12 @@
 
 namespace Anax\Request;
 
-use \PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Storing information from the request and calculating related essentials.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class RequestTest extends TestCase
 {
@@ -21,7 +23,7 @@ class RequestTest extends TestCase
      *
      * @return void
      */
-    public function setUp()
+    public function setUp() : void
     {
         $this->request = new Request();
         $this->request->setGlobals(
@@ -36,26 +38,6 @@ class RequestTest extends TestCase
                 ]
             ]
         );
-    }
-
-
-
-    /**
-     * Test
-     *
-     * @return void
-     *
-     */
-    public function testGet()
-    {
-        $get = $this->request->getGet("nothing");
-        $this->assertEmpty($get, "Nothing is NOT empty.");
-
-        $key = "somekey";
-        $value = "somevalue";
-        $this->request->setGet($key, $value);
-        $get = $this->request->getGet($key);
-        $this->assertEquals($get, $value, "Missmatch between " . $get . " and " . $value);
     }
 
 
@@ -401,8 +383,6 @@ class RequestTest extends TestCase
      *
      * @param string $server the route part
      *
-     * @return void
-     *
      * @dataProvider providerInit
      *
      */
@@ -423,18 +403,207 @@ class RequestTest extends TestCase
 
         $this->assertEquals($siteUrl, $this->request->getSiteUrl(), "Failed siteurl: " . $siteUrl);
         $this->assertEquals($baseUrl, $this->request->getBaseUrl(), "Failed baseurl: " . $baseUrl);
-
-        echo $this->request->getMethod();
     }
 
 
 
     /**
-     * Test
+     * Check that the HTTP method can be retrieved.
      */
     public function testRequestMethod()
     {
-        $this->request->setServer("REQUEST_METHOD", "GET");
-        $this->assertEquals("GET", $this->request->getMethod());
+        // Initial value
+        $exp = null;
+        $res = $this->request->getScriptName();
+        $this->assertEquals($exp, $res);
+
+        // Set and get the method
+        $exp = "GET";
+        $this->request->setServer("REQUEST_METHOD", $exp);
+        $res = $this->request->getMethod();
+        $this->assertEquals($exp, $res);
+    }
+
+
+
+    /**
+     * Provider for $_SERVER to get siteurl and baseurl.
+     */
+    public function providerSiteBaseUrl()
+    {
+        return [
+            [
+                [
+                    'REQUEST_SCHEME' => "http",
+                    'HTTPS'       => null, //"on",
+                    'SERVER_NAME' => "dbwebb.se",
+                    'SERVER_PORT' => "80",
+                    'REQUEST_URI' => "/install_dir/htdocs/index.php",
+                    'SCRIPT_NAME' => "/install_dir/htdocs/index.php",
+                    'siteUrl'     => "http://dbwebb.se",
+                    'baseUrl'     => "http://dbwebb.se/install_dir/htdocs",
+                ]
+            ],
+            [
+                [
+                    'REQUEST_SCHEME' => "http",
+                    'HTTPS'       => null, //"on",
+                    'SERVER_NAME' => "dbwebb.se",
+                    'SERVER_PORT' => "80",
+                    'REQUEST_URI' => "/index.php",
+                    'SCRIPT_NAME' => "/index.php",
+                    'siteUrl'     => "http://dbwebb.se",
+                    'baseUrl'     => "http://dbwebb.se",
+                ]
+            ],
+        ];
+    }
+
+
+
+    /**
+     * Check that the baseurl is created.
+     * @dataProvider providerInit
+     */
+    public function testGetBaseUrls($server)
+    {
+        $this->request->setServer('REQUEST_SCHEME', $server['REQUEST_SCHEME']);
+        $this->request->setServer('HTTPS', $server['HTTPS']);
+        $this->request->setServer('SERVER_NAME', $server['SERVER_NAME']);
+        $this->request->setServer('SERVER_PORT', $server['SERVER_PORT']);
+        $this->request->setServer('REQUEST_URI', $server['REQUEST_URI']);
+        $this->request->setServer('SCRIPT_NAME', $server['SCRIPT_NAME']);
+
+        $baseUrl = $server['baseUrl'];
+
+        $res = $this->request->init();
+
+        $exp = $server['siteUrl'];
+        $res = $this->request->getSiteUrl();
+        $this->assertEquals($exp, $res);
+
+        $exp = $server['baseUrl'];
+        $res = $this->request->getBaseUrl();
+        $this->assertEquals($exp, $res);
+    }
+
+
+
+    /**
+     * Check that the siteurl and baseurl is created.
+     */
+    public function testEmptyGetSiteBaseUrl()
+    {
+        $request = new Request();
+
+        // Initial value
+        $exp = null;
+        $res = $request->getBaseUrl();
+        $this->assertEquals($exp, $res);
+
+        $exp = null;
+        $res = $request->getSiteUrl();
+        $this->assertEquals($exp, $res);
+
+        // Value after empty init
+        $request->init();
+        $exp = null;
+        $res = $request->getBaseUrl();
+        $this->assertEquals($exp, $res);
+
+        $exp = null;
+        $res = $request->getSiteUrl();
+        $this->assertEquals($exp, $res);
+    }
+
+
+
+    /**
+     * Check that the script name can be retrieved.
+     */
+    public function testGetScriptName()
+    {
+        // Initial value
+        $exp = null;
+        $res = $this->request->getScriptName();
+        $this->assertEquals($exp, $res);
+
+        // Set and get the name
+        $res = "index.php";
+        $this->request->setServer("SCRIPT_NAME", $exp);
+        $res = $this->request->getScriptName();
+        $this->assertEquals($exp, $res);
+    }
+
+
+
+    /**
+     * Check that the route parts can be retrieved.
+     */
+    public function testGetRouteParts()
+    {
+        // Initial value
+        $exp = null;
+        $res = $this->request->getRouteParts();
+        $this->assertEquals($exp, $res);
+
+        // Test the empty route
+        $this->request->setServer("REQUEST_URI", "");
+        $this->request->init();
+        $exp = [""];
+        $res = $this->request->getRouteParts();
+        $this->assertEquals($exp, $res);
+
+        // Test another route
+        $this->request->setServer("REQUEST_URI", "some/route");
+        $this->request->init();
+        $exp = ["some", "route"];
+        $res = $this->request->getRouteParts();
+        $this->assertEquals($exp, $res);
+
+        // Test route with querystring
+        $this->request->setServer("REQUEST_URI", "some/route?arg=1&arg2");
+        $this->request->init();
+        $exp = ["some", "route"];
+        $res = $this->request->getRouteParts();
+        $this->assertEquals($exp, $res);
+    }
+
+
+
+    /**
+     * Check that the body can be set/get.
+     */
+    public function testSetAndGetBody()
+    {
+        // Initial value
+        $exp = null;
+        $res = $this->request->getBody();
+        $this->assertEquals($exp, $res);
+
+        // Set and get body
+        $exp = "body";
+        $this->request->setBody($exp);
+        $res = $this->request->getBody();
+        $this->assertEquals($exp, $res);
+    }
+
+
+
+    /**
+     * Get the body as JSON.
+     */
+    public function testGetBodyAsJson()
+    {
+        // Initial value
+        $exp = null;
+        $res = $this->request->getBodyAsJson();
+        $this->assertEquals($exp, $res);
+
+        // Set and get body
+        $exp = "[1]";
+        $this->request->setBody($exp);
+        $res = $this->request->getBodyAsJson();
+        $this->assertEquals(json_decode($exp), $res);
     }
 }

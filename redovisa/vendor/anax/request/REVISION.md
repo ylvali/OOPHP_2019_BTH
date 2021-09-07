@@ -32,6 +32,53 @@ function getPost($key, $default = null)
 
 
 
+v2.0.7 (2020-11-05)
+---------------------------------
+
+* Add tests for getBaseUrl and getSiteUrl.
+
+
+
+v2.0.6 (2020-11-05)
+---------------------------------
+
+* Update to PHP 7.4 on Travis.
+
+
+
+v2.0.5 (2020-11-05)
+---------------------------------
+
+* Enhance getBodyAsJson to allow for empty body to be returned as null.
+* Enhance unit testing.
+
+
+
+v2.0.4 (2020-04-23)
+---------------------------------
+
+* Align Makefile with anax/commons.
+
+
+
+v2.0.3 (2020-04-22)
+---------------------------------
+
+* Fix error in Request::init() on PHP 7.4 when parse_url() returns false due to malformed url (on cli).
+
+
+
+v2.0.2 (2019-11-07)
+---------------------------------
+
+* Fix Makefile for phpmd download.
+* Add setPost().
+* Upgrade to phpunit 8.
+* Add unittests.
+* Make getServer and getPost to support returning whole array of SERVER/POST.
+
+
+
 v2.0.1 (2019-04-05)
 ---------------------------------
 

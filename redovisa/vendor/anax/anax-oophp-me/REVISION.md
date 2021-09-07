@@ -3,6 +3,50 @@ Revision history
 
 
 
+v2.0.5 (2020-04-03)
+---------------------------------
+
+* Install shellcheck in .bin.
+* Add docker-compose.yaml to make it easy to run docker.
+
+
+
+v2.0.4 (2020-04-03)
+---------------------------------
+
+* Update Makefile with installation link for shellcheck.
+
+
+
+v2.0.3 (2020-04-03)
+---------------------------------
+
+* Update Makefile with make theme to copy files from theme/.
+
+
+
+v2.0.2 (2020-03-31)
+---------------------------------
+
+* Remove unused route.
+
+
+
+v2.0.1 (2020-03-31)
+---------------------------------
+
+* Change the composition to depend on each anax module.
+* Remove dependency to anax-flat and anax-lite.
+
+
+
+v2.0.0 (2020-03-31)
+---------------------------------
+
+* Update Makefile to install phpmd.
+
+
+
 v2.0.0-beta.5 (2019-03-25)
 ---------------------------------
 
