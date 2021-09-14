@@ -137,8 +137,6 @@ class DbBase implements DbBaseInterface
         // fetch all
         $res = $this->fetchAll($statementPDO, $param, $sql);
 
-
-
         /// ANAX
         if ($this->theAnaxApp && $this->anaxOn) {
             $res = $this->theAnaxApp->db->executeFetchAll($sql, $param);

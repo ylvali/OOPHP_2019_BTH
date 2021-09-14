@@ -256,7 +256,7 @@ class AppController implements AppInjectableInterface
         if ($this->app->session->has("theDiceGame2")) {
             # Get game session
             $theGame = unserialize($this->app->session->get("theDiceGame2"));
-            $res1 = "Game collected from session";
+            // $res1 = "Game collected from session";
             $res = $theGame->playGame();
 
             # Print the players score
@@ -277,7 +277,7 @@ class AppController implements AppInjectableInterface
             $this->app->session->set("theDiceGame2", serialize($theGame));
         } else {
             # Start a new game
-            $res1 = "New game session: " . strval(rand());
+            // $res1 = "New game session: " . strval(rand());
             $theGame = new TheGameHistogram($nrDice, $playerArr);
 
             # Create a first player & play
@@ -411,11 +411,11 @@ class AppController implements AppInjectableInterface
 
             if ($playAgain == 'yes') {
                 # Set up the object to play again
-                $res = $theGame->setPlayAgain();
+                $theGame->setPlayAgain();
                 $reply = "Play again !";
             } else {
                 # Collect points & next player
-                $res = $theGame->collectPoints();
+                $theGame->collectPoints();
                 $theGame->nextPlayer();
                 $reply = "Collecting the points.";
             }

@@ -5,4 +5,4 @@ Cms - A simple cms
 ### Blog & page cms
  [cms ](cms/start)
 
- <img src = 'img/cellyPicPart.png' class='titleImg'>
+ <img src = 'img/lush300px.jpg' class='titleImg'>

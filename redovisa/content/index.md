@@ -4,19 +4,21 @@ title: "Oophp : Yso"
 : OOPHP :
 =========================
 
-Hej !
+## Välkommen
 
-Jag tycker om att webbprogrammera, att skapa i kod.
+En sida tillägnad kunskap i webbprogrammering.
 
-Denna kursen i objektorienterad PHP är intressant.
+En kurs i objektorienterad PHP.
 Objektorienteringen med sin konceptuella natur. Möjlighet till ramverk,
-som Anax. Anax kreationen är jag speciellt intresserad av. Som inspiration.
+som Anax. Anax är en inspiration och är intresserad av uppbyggnaden.
 
-Jag läser kursen agilt och i min takt, så fort som möjligt. Vid sidan av arbete.
-Numera som frilansande webbprogrammerare, vilket har gått bra ! Tacksam över det.
-I kursen har jag gått djupare in på vissa delar, och arbetat mer med.
+Jag läser kursen agilt och i min takt. Vid sidan av arbete.
+Numera som frilansande webbprogrammerare, vilket har gått bra. Tacksam över det.
+I kursen har jag gjort fördjupningar, vilket därmed tagit mer tid.
+
+Bra och användbara kunskaper. Jättebra kurs!f
 
 Tack
-/Ylva
+/Ylva Sjölin
 
 [FIGURE src="img/2019_moi.jpg" class="presImg"']

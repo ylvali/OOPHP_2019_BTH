@@ -65,9 +65,10 @@
 
 /* The btns */
 .btn1 {
-   background-color: #fff;
+   background-color: #f2e8f2;
    border-radius: 10px;
    border-style: none;
+   color: #4a3848;
    cursor: pointer;
    letter-spacing: 0.9px;
    margin: 3px;
@@ -122,4 +123,13 @@
 /* presentation pic */
 .presImg {
     width: 200px;
+}
+
+.region-main {
+  display: block;
+  float: none;
+  margin: 0 auto;
+  overflow: auto;
+  padding: 5%;
+  width: 90%;
 }

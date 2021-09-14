@@ -1,0 +1,1 @@
+C:\cygwin64\home\Ylvali\dbwebbkurser\oophp\me\redovisa\src\SimpleCMS\TheTextFilter.php:159	Avoid using static access to class '\Michelf\Markdown' in method 'markdown'.

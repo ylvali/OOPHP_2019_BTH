@@ -209,6 +209,7 @@ class ProjectCreateObjectTest extends TestCase
             $settings
         );
         // var_dump($res12);
+        $this->assertNotNull($res12);
 
         // Get the nr of pages for one table
         $table12 = 'products';

@@ -22,6 +22,7 @@ $di->loadServices(ANAX_INSTALL_PATH . "/config/di");
 $app = $di;
 $di->set("app", $app);
 
+
 // // Add anax/proxy access to $id, if available
 // if (class_exists("\Anax\Proxy\ProxyDIFactory")) {
 //     \Anax\Proxy\ProxyDIFactory::init($di);

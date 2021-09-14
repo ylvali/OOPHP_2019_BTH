@@ -22,12 +22,12 @@
 
 
 return [
+    // "dsn"              => "mysql:host=localhost;dbname=oophp",
     "dsn"              => "mysql:host=blu-ray.student.bth.se:3306;dbname=ylsj11",
-    // "dsn"              => "mysql:localhost;dbname=oophp",
-    "username"         => 'ylsj11',
     // "username"         => 'user',
-    "password"         => 'c3wARF3zGpfX',
+    "username"         => 'ylsj11',
     // "password"         => 'pass',
+    "password"         => 'c3wARF3zGpfX',
     "driver_options"   => null,
     "fetch_mode"       => \PDO::FETCH_OBJ,
     "table_prefix"     => null,

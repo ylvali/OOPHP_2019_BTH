@@ -65,24 +65,24 @@ class DbBaseTestException extends TestCase
         $this->assertNotNull($res4);
     }
 
-    /**
-     * The testExpectedExceptionIsRaised2
-     *
-     * @expectedException PDOException
-     * Test connection w nonexistant db
-     *
-     * @return void
-     */
-    public function testExpectedExceptionIsRaised2()
-    {
-        // Testing calling db with incorrect database
-        $host = '127.0.0.1';
-        $theDb = 'error';
-        $user = 'user';
-        $password = 'pass';
-        $dbBase = new DbBase($host, $theDb, $user, $password);
-        $this->assertInstanceOf("\Anax\ProductDb\DbBase", $dbBase);
-    }
+    // /**
+    //  * The testExpectedExceptionIsRaised2
+    //  *
+    //  * @expectedException PDOException
+    //  * Test connection w nonexistant db
+    //  *
+    //  * @return void
+    //  */
+    // public function testExpectedExceptionIsRaised2()
+    // {
+    //     // Testing calling db with incorrect database
+    //     $host = '127.0.0.1';
+    //     $theDb = 'error';
+    //     $user = 'user';
+    //     $password = 'pass';
+    //     $dbBase = new DbBase($host, $theDb, $user, $password);
+    //     $this->assertInstanceOf("\Anax\ProductDb\DbBase", $dbBase);
+    // }
 
     /**
      * The testExpectedExceptionIsRaised3
