@@ -201,7 +201,7 @@ $app->router->add("cms/start", function () use ($app) {
             // Create path as null if empty
             if ($createThis['path'] == '') {
                 $createThis['path'] = null;
-            }
+            } 
 
             // Create a new blog post
             $res = $blog->createOne(null, null, 'content', $createThis);
